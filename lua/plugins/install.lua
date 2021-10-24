@@ -16,15 +16,38 @@ require("packer").startup(function(use)
   }
   -- Comments
   use { "b3nj5m1n/kommentary" }
+  -- use {
+  --   "terrortylor/nvim-comment",
+  --   event = "BufRead",
+  --   config = function()
+  --     require "nvim_comment".setup()
+  --   end,
+  -- }
+  -- use { "tpope/vim-commentary" }
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     event = "BufReadPost",
-    config = function() require "plugins.configs.todo".setup() end,
+    config = function()
+      require "plugins.configs.todo".setup()
+    end,
   }
 
   -- File explorer
-  use { "kyazdani42/nvim-tree.lua" }
+  -- use {
+  --   "kyazdani42/nvim-tree.lua",
+  --   requires = "kyazdani42/nvim-web-devicons",
+  --   config = function()
+  --     require "nvim-tree".setup {}
+  --   end,
+  -- }
+  use {
+    "luukvbaal/nnn.nvim",
+    event = "BufWinEnter",
+    config = function()
+      require "plugins.configs.nnn".setup()
+    end,
+  }
 
   -- Statusline
   use { "glepnir/galaxyline.nvim" }
@@ -45,7 +68,9 @@ require("packer").startup(function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     branch = "0.5-compat",
-    config = function() require "plugins.configs.treesitter".setup() end,
+    config = function()
+      require "plugins.configs.treesitter".setup()
+    end,
     run = ":TSUpdate"
   }
 
@@ -97,7 +122,9 @@ require("packer").startup(function(use)
   -- Git
   use {
     "lewis6991/gitsigns.nvim",
-    config = function() require "plugins.configs.gitsigns".setup() end,
+    config = function()
+      require "plugins.configs.gitsigns".setup()
+    end,
     requires = { "nvim-lua/plenary.nvim" },
     event = "BufRead",
   }

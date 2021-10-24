@@ -1,3 +1,4 @@
+local g = vim.g
 local cmd = vim.cmd
 
 local M = {
@@ -20,10 +21,15 @@ local M = {
   white = "#ffffff",
 }
 
-vim.g.tokyonight_style = "night"
-vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+-- Activate highlighting
+vim.api.nvim_command("syntax on")
+if vim.fn.has("termguicolors") == 1 then
+  vim.o.termguicolors = true
+end
 
-cmd[[colorscheme tokyonight]]
+-- Set theme
+g.nv_theme = "tokyonight"
+require("themes." .. g.nv_theme)
 
 function M.setItalics()
   cmd[[ hi Comment gui=italic ]]

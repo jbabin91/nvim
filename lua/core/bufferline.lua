@@ -1,4 +1,4 @@
-local colors = require "ui.colors"
+local colors = require "core.theme"
 
 require("bufferline").setup {
   options = {
