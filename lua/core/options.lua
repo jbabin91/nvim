@@ -47,6 +47,8 @@ opt.list = true
 opt.listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←"
 opt.wildignorecase = true
 opt.wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**"
+opt.ignorecase = true
+opt.smartcase = true
 
 -- disable tilde on end of buffer: https://github.com/neovim/neovim/pull/8546#issuecomment-643643758
 opt.fillchars = { eob = " " }

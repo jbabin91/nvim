@@ -2,6 +2,9 @@ require("packer").startup(function(use)
   -- Packer can manage itself as an optional plugin
   use { "wbthomason/packer.nvim" }
 
+  -- Impatient
+  use { "lewis6991/impatient.nvim" }
+
   -- autopairs
   use {
     "windwp/nvim-autopairs",
@@ -13,6 +16,12 @@ require("packer").startup(function(use)
   }
   -- Comments
   use { "b3nj5m1n/kommentary" }
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    event = "BufReadPost",
+    config = function() require "plugins.configs.todo".setup() end,
+  }
 
   -- File explorer
   use { "kyazdani42/nvim-tree.lua" }
@@ -24,10 +33,19 @@ require("packer").startup(function(use)
   -- TODO: look into barbar.nvim as an alternative
   use { "akinsho/nvim-bufferline.lua" }
 
+  -- Indentation Guides
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require "plugins.configs.blankline".setup()
+    end,
+  }
+
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
-    -- event = "BufRead",
+    branch = "0.5-compat",
+    config = function() require "plugins.configs.treesitter".setup() end,
     run = ":TSUpdate"
   }
 
@@ -66,14 +84,30 @@ require("packer").startup(function(use)
   -- use { "rafamadriz/friendly-snippets" }
 
   -- LSP
-  use { "onsails/lspkind-nvim" }
-  -- use { "kosayoda/nvim-lightbulb" }
   use {
     "neovim/nvim-lspconfig",
     "williamboman/nvim-lsp-installer",
   }
-
+  use { "nvim-lua/lsp-status.nvim" }
   use { "glepnir/lspsaga.nvim" }
+  use { "ray-x/lsp_signature.nvim" }
+  use { "onsails/lspkind-nvim" }
+  -- use { "kosayoda/nvim-lightbulb" }
+
+  -- Git
+  use {
+    "lewis6991/gitsigns.nvim",
+    config = function() require "plugins.configs.gitsigns".setup() end,
+    requires = { "nvim-lua/plenary.nvim" },
+    event = "BufRead",
+  }
+  use { "kdheepak/lazygit.nvim" }
+
+  -- Formatter
+  use { "jose-elias-alvarez/null-ls.nvim" }
+
+  -- Smooth Scroll
+  use { "karb94/neoscroll.nvim" }
 
   -- Highlight Colorcodes
   use {

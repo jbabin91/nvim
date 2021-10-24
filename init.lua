@@ -5,3 +5,5 @@ end
 require("core")
 require("plugins")
 require("ui")
+
+require("impatient")
