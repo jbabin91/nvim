@@ -1,9 +1,9 @@
 local core_modules = {
   "core.options",
-  "core.mappings",
+  -- "core.mappings",
   "core.theme",
-  "core.galaxyline",
-  "core.bufferline"
+  -- "core.galaxyline",
+  -- "core.bufferline"
 }
 
 for _, module in ipairs(core_modules) do

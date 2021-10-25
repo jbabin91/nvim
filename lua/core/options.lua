@@ -3,17 +3,18 @@ local opt = vim.opt
 
 -- GENERAL SETTINGS
 opt.iskeyword:append("-") -- treat dash separated words as a word text object
-opt.formatoptions:remove("cro") -- Stops newline continuation of comments
+opt.formatoptions:remove("crot") -- Stops newline continuation of comments
 opt.sessionoptions:append("globals")
 
 opt.hidden = true -- Required to keep multiple buffers open
-opt.wrap = false -- Display long lines as just one line
+opt.wrap = true -- Display long lines as just one line
 opt.whichwrap:append("<>[]hl")
 opt.encoding = "utf-8" -- The encoding displayed
 opt.pumheight = 10 -- Makes the popup menu smaller
 opt.fileencoding = "utf-8" -- The encoding written to the file
 opt.ruler = true -- Show the cursor position all the time
-opt.cmdheight = 1 -- More space for displaying messages
+opt.cursorline = false
+opt.cmdheight = 2 -- More space for displaying messages
 opt.equalalways = false -- Prevent auto balance split size when split
 opt.mouse = "a" -- Enable your mouse
 opt.splitbelow = true -- Horizontal splits will automatically open below
@@ -32,14 +33,16 @@ opt.cul = true -- Enable highlighting for the current line
 opt.termguicolors = true
 opt.background = "dark" -- tell vim what the background color is
 opt.showmode = false -- We don't need to see things like -- INSERT -- anymore
+opt.showcmd = true
 opt.backup = false -- This is recommended by coc
 opt.writebackup = false -- This is recommended by coc
 opt.shortmess:append("csI") -- Don't pass messages to |ins-completion-menu|.
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.updatetime = 300 -- Faster completion
-opt.timeoutlen = 100 -- By default timeoutlen is 1000 ms
+opt.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 opt.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 opt.incsearch = true
+opt.inccommand = "split"
 opt.switchbuf = "useopen,usetab"
 opt.completeopt = "menuone,noselect"
 opt.title = true
@@ -49,9 +52,12 @@ opt.wildignorecase = true
 opt.wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**"
 opt.ignorecase = true
 opt.smartcase = true
+opt.scrolloff = 8
 
 -- disable tilde on end of buffer: https://github.com/neovim/neovim/pull/8546#issuecomment-643643758
 opt.fillchars = { eob = " " }
+
+vim.g.nvcode_termcolors = 256
 
 -- disable some builtin vim plugins
 local disabled_built_ins = {

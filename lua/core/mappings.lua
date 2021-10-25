@@ -14,9 +14,9 @@ map("v", ">", ">gv")
 map("v", "p", '"_dP')
 
 -- Comments
-map("n", "gcc", "<Plug>kommentary_line_default", {})
-map("n", "gc", "<Plug>lommentary_motion_default", {})
-map("v", "gcc", "<Plug>kommentary_visual_default", {})
+vim.api.nvim_set_keymap("n", "gcc", "<Plug>kommentary_line_default", {})
+vim.api.nvim_set_keymap("n", "gc", "<Plug>lommentary_motion_default", {})
+vim.api.nvim_set_keymap("v", "gcc", "<Plug>kommentary_visual_default", {})
 
 -- Better nav
 map("i", "<c-j>", '"\\<c-n>"', { expr = true })
@@ -58,3 +58,5 @@ map("c", "ww", "noa w")
 -- jumping
 map("n", "g[", "<C-o>")
 map("n", "g]", "<C-i>")
+
+map("n", "<leader>n", "")
