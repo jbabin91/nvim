@@ -1,6 +1,6 @@
 local core_modules = {
   "core.options",
-  -- "core.mappings",
+  "core.mappings",
   "core.theme",
   -- "core.galaxyline",
   -- "core.bufferline"

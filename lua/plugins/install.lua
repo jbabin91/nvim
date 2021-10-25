@@ -18,14 +18,14 @@ require("packer").startup {
       -- use { "joshdick/onedark.vim" } -- Theme inspired by Atom
       -- use { "gruvbox-community/gruvbox" }
       -- use { "folke/tokyonight.nvim" }
-      -- -- "christianchiarulli/nvcode-color-schemes.vim",
+      -- "christianchiarulli/nvcode-color-schemes.vim",
       "kyazdani42/nvim-web-devicons",
       -- Add indentation guides even on blank lines
       { "lukas-reineke/indent-blankline.nvim" },
       -- A blazing fast and easy to configure neovim statusline written in pure lua
       { "hoob3rt/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } },
-      -- -- {
-      -- --   "NTBBloodbath/galaxyline.nvim",
+      -- {
+      --   "NTBBloodbath/galaxyline.nvim",
       --   branch = "main",
       --   config = function()
       --     require("plugins.configs.galaxyline").setup()
@@ -66,17 +66,23 @@ require("packer").startup {
     -- use { "onsails/lspkind-nvim" }
     -- use { "kosayoda/nvim-lightbulb" }
     -- LSP
-    -- use {
-    --   "williamboman/nvim-lsp-installer",
-    --   requires = {
-    --     "neovim/nvim-lspconfig",
-    --     "folke/lua-dev.nvim",
-    --   },
-    --   after = "coq_nvim",
-    --   config = function()
-    --     require("plugins.configs.lsp").setup()
-    --   end,
-    -- }
+    use {
+      "williamboman/nvim-lsp-installer",
+      {
+        "neovim/nvim-lspconfig",
+        requires = {
+          "neovim/nvim-lspconfig",
+          "folke/lua-dev.nvim",
+          "nvim-lua/lsp-status.nvim",
+          "ray-x/lsp_signature.nvim",
+          "jose-elias-alvarez/null-ls.nvim",
+        },
+        after = "coq_nvim",
+        config = function()
+          require("plugins.configs.lsp")
+        end,
+      },
+    }
     -- Completion & Snippets
     use {
       "ms-jpq/coq_nvim",
@@ -126,27 +132,9 @@ require("packer").startup {
         requires = { "nvim-lua/plenary.nvim" },
       },
     }
-    -- use { }
-    -- use {
-    --   {
-    --     "lewis6991/gitsigns.nvim",
-    --     requires = {
-    --       "nvim-lua/plenary.nvim",
-    --     },
-    --     config = function()
-    --       require("plugins.configs.gitsigns").setup()
-    --     end,
-    --   },
-    -- }
     -- Formatting/code style
     use {
       "mhartington/formatter.nvim",
-      -- use {
-      -- --   "mhartington/formatter.nvim",
-      --   config = function()
-      --     require("plugins.configs.formatter").setup()
-      --   end,
-      -- }
       "editorconfig/editorconfig-vim",
     }
     -- MISC
@@ -168,21 +156,13 @@ require("packer").startup {
     use { "justinmk/vim-sneak" } -- The missing motion for Vim 👟
     use { "akinsho/toggleterm.nvim" } -- A neovim lua plugin to help easily manage multiple terminal windows
     --   {
-    --     "akinsho/toggleterm.nvim",
-    --     config = function()
-    --       require("toggleterm").setup {
-    --         open_mapping = [[<C-t>]],
-    --       }
-    --     end,
-    --   },
-    --   {
     --     "haya14busa/incsearch.vim",
     --     config = function()
     --       require("plugins.configs.incsearch").setup()
     --     end,
     --   },
-    -- -- {
-    -- --   "sheerun/vim-polyglot",
+    -- {
+    --   "sheerun/vim-polyglot",
     --   setup = function()
     --     vim.g.polyglot_disabled = { "autoindent", "sensible" }
     --   end,

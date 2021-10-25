@@ -35,16 +35,6 @@ require("lualine").setup {
   extensions = { "chadtree", "fugitive", "quickfix", "toggleterm" },
 }
 
--- Keymappings
--- Remap space as leader key
-vim.api.nvim_set_keymap("", "<space>", "<nop>", { noremap = true, silent = true })
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
--- Remap for dealing with word wrap
-vim.api.nvim_set_keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
-
 -- Highlight on yank
 vim.api.nvim_exec(
   [[
@@ -56,14 +46,6 @@ vim.api.nvim_exec(
   false
 )
 
--- Y yank until till end of line
-vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true })
-
--- Sneak F & T
-vim.api.nvim_set_keymap("", "f", "<Plug>Sneak_f", {})
-vim.api.nvim_set_keymap("", "F", "<Plug>Sneak_F", {})
-vim.api.nvim_set_keymap("", "t", "<Plug>Sneak_t", {})
-vim.api.nvim_set_keymap("", "T", "<Plug>Sneak_T", {})
 -- Map blankline
 vim.g.indent_blankline_char = "┊"
 vim.g.indent_blankline_filetype_exclude = { "help", "packer" }
@@ -84,10 +66,22 @@ vim.cmd [[set colorcolumn=99999]]
 --   false
 -- )
 
-vim.api.nvim_set_keymap("n", "<leader>f", "<cmd>:Format<cr>", { noremap = true, silent = true })
+local function prettier()
+  return {
+    exe = "prettier",
+    args = { vim.api.nvim_buf_get_name(0) },
+    stdin = true,
+  }
+end
 
 require("formatter").setup {
+  logging = false,
   filetype = {
+    javascript = { prettier },
+    javsscriptreact = { prettier },
+    typescript = { prettier },
+    typescriptreact = { prettier },
+    json = { prettier },
     lua = {
       function()
         return {
@@ -100,15 +94,12 @@ require("formatter").setup {
         }
       end,
     },
+    css = { prettier },
+    scss = { prettier },
+    graphql = { prettier },
+    markdown = { prettier },
   },
 }
-
--- vim.api.nvim_exec([[
---   augroup Format
---     autocmd!
---     autocmd BufWritePost * FormatWrite
---   augroup end
--- ]], false)
 
 -- Setup for format.nvim
 -- require("format").setup({
@@ -163,7 +154,6 @@ require("formatter").setup {
 -- })
 
 -- CHADTree
-vim.api.nvim_set_keymap("n", "<leader>v", [[<cmd>CHADopen<CR>]], { noremap = true, silent = true })
 vim.g.chadtree_settings = {
   ["theme.text_colour_set"] = "nerdtree_syntax_dark",
   ["view.width"] = 30,
@@ -207,40 +197,65 @@ require("toggleterm").setup {
   },
 }
 
--- Covenience Mappings
-vim.api.nvim_set_keymap("n", "<leader>/", "<cmd>nohlsearch<Bar>diffupdate<CR><C-L>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<leader>p", '"_dP', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "y", "ygv<esc>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "jk", "<esc>", { noremap = true })
-vim.api.nvim_set_keymap("i", "kj", "<esc>", { noremap = true })
-vim.api.nvim_set_keymap("t", "<C-q>", [[<C-\><C-n>]], { noremap = true })
-vim.api.nvim_set_keymap("t", "jk", [[<C-\><C-n>]], { noremap = true })
-vim.api.nvim_set_keymap("t", "kj", [[<C-\><C-n>]], { noremap = true })
-vim.api.nvim_set_keymap("t", "<C-h>", [[<C-\><C-n><C-W>h]], { noremap = true })
-vim.api.nvim_set_keymap("t", "<C-j>", [[<C-\><C-n><C-W>j]], { noremap = true })
-vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-W>k]], { noremap = true })
-vim.api.nvim_set_keymap("t", "<C-l>", [[<C-\><C-n><C-W>l]], { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-h>", [[<C-W>h]], { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-j>", [[<C-W>j]], { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-k>", [[<C-W>k]], { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-l>", [[<C-W>l]], { noremap = true })
-
 -- Autopairs setup
 require("nvim-autopairs").setup {
   check_ts = true,
 }
 
 -- Gitsigns
+-- require("gitsigns").setup {
+--   signs = {
+--     add = { hl = "GitGutterAdd", text = "+" },
+--     change = { hl = "GitGutterChange", text = "~" },
+--     delete = { hl = "GitGutterDelete", text = "_" },
+--     topdelete = { hl = "GitGutterDelete", text = "‾" },
+--     changedelete = { hl = "GitGutterChange", text = "~" },
+--   },
+-- }
 require("gitsigns").setup {
   signs = {
-    add = { hl = "GitGutterAdd", text = "+" },
-    change = { hl = "GitGutterChange", text = "~" },
-    delete = { hl = "GitGutterDelete", text = "_" },
-    topdelete = { hl = "GitGutterDelete", text = "‾" },
-    changedelete = { hl = "GitGutterChange", text = "~" },
+    add = {
+      hl = "GitSignsAdd",
+      text = "│",
+      numhl = "GitSignsAddNr",
+      linehl = "GitSignsAddLn",
+    },
+    change = {
+      hl = "GitSignsChange",
+      text = "│",
+      numhl = "GitSignsChangeNr",
+      linehl = "GitSignsChangeLn",
+    },
+    delete = {
+      hl = "GitSignsDelete",
+      text = "_",
+      numhl = "GitSignsDeleteNr",
+      linehl = "GitSignsDeleteLn",
+    },
+    topdelete = {
+      hl = "GitSignsDelete",
+      text = "‾",
+      numhl = "GitSignsDeleteNr",
+      linehl = "GitSignsDeleteLn",
+    },
+    changedelete = {
+      hl = "GitSignsChange",
+      text = "~",
+      numhl = "GitSignsChangeNr",
+      linehl = "GitSignsChangeLn",
+    },
   },
+  numhl = false,
+  linehl = false,
+  keymaps = {},
+  watch_index = { interval = 1000, follow_files = true },
+  current_line_blame = false,
+  current_line_blame_opts = { delay = 1000 },
+  sign_priority = 6,
+  update_debounce = 200,
+  status_formatter = nil, -- Use default
+  word_diff = false,
+  use_internal_diff = true, -- If luajit is present
 }
 
 -- Telescope
@@ -254,63 +269,6 @@ require("telescope").setup {
     },
   },
 }
-
--- Add telescope shortcuts
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>ff",
-  [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]],
-  { noremap = true, silent = true }
-)
--- vim.api.nvim_set_keymap(
---   "n",
---   "<leader>fg",
---   [[<cmd>lua require('telescope.builtin').live_grep()<CR>]],
---   { noremap = true, silent = true }
--- )
--- vim.api.nvim_set_keymap(
---   "n",
---   "<leader>fb",
---   [[<cmd>lua require('telescope.builtin').buffers()<CR>]],
---   { noremap = true, silent = true }
--- )
--- vim.api.nvim_set_keymap(
---   "n",
---   "<leader>fh",
---   [[<cmd>lua require('telescope.builtin').help_tags()<CR>]],
---   { noremap = true, silent = true }
--- )
---
--- vim.api.nvim_set_keymap(
---   "n",
---   "<leader>fz",
---   [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]],
---   { noremap = true, silent = true }
--- )
--- vim.api.nvim_set_keymap(
---   "n",
---   "<leader>ft",
---   [[<cmd>lua require('telescope.builtin').tags()<CR>]],
---   { noremap = true, silent = true }
--- )
--- vim.api.nvim_set_keymap(
---   "n",
---   "<leader>fs",
---   [[<cmd>lua require('telescope.builtin').grep_string()CR>]],
---   { noremap = true, silent = true }
--- )
--- vim.api.nvim_set_keymap(
---   "n",
---   "<leader>fo",
---   [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]],
---   { noremap = true, silent = true }
--- )
--- vim.api.nvim_set_keymap(
---   "n",
---   "<leader>?",
---   [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]],
---   { noremap = true, silent = true }
--- )
 
 -- Treesitter configuration
 -- PArsers must be installded manually via :TSInstall
