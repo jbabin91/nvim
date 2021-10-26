@@ -3,7 +3,7 @@ local core_modules = {
   "core.mappings",
   "core.theme",
   -- "core.galaxyline",
-  -- "core.bufferline"
+  "core.bufferline"
 }
 
 for _, module in ipairs(core_modules) do

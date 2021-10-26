@@ -4,26 +4,46 @@ require("packer").startup {
     use { "lewis6991/impatient.nvim" }
     -- tpope
     use {
-      "tpope/vim-fugitive", -- Git commands in nvim
-      "tpope/vim-rhubarb", -- Fugitive-sompanion to interact with github
-      "tpope/vim-commentary", -- -- "gc" to comment visual regions/lines
-      "tpope/vim-repeat", -- enable repeating supported plugin maps with "."
-      "tpope/vim-speeddating", -- use CTRL-A/CTRL-X to increase dates, times, and more
+      -- "tpope/vim-commentary", -- -- "gc" to comment visual regions/lines
+      -- "tpope/vim-repeat", -- enable repeating supported plugin maps with "."
+      -- "tpope/vim-speeddating", -- use CTRL-A/CTRL-X to increase dates, times, and more
       "tpope/vim-surround", -- quoting/parenthesizing made simple
-      "tpope/vim-unimpaired", -- Pairs of handy bracket mappings
+      -- "tpope/vim-unimpaired", -- Pairs of handy bracket mappings
     }
     -- UI & Syntax
+    -- Colorschemes
     use {
       "folke/tokyonight.nvim",
+      "tanvirtin/monokai.nvim",
+      "navarasu/onedark.nvim",
       -- use { "joshdick/onedark.vim" } -- Theme inspired by Atom
       -- use { "gruvbox-community/gruvbox" }
       -- use { "folke/tokyonight.nvim" }
       -- "christianchiarulli/nvcode-color-schemes.vim",
+    }
+    use {
       "kyazdani42/nvim-web-devicons",
       -- Add indentation guides even on blank lines
-      { "lukas-reineke/indent-blankline.nvim" },
+      {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+          require("plugins.configs.blankline").setup()
+        end,
+      },
+      "akinsho/bufferline.nvim",
+      -- "glepnir/dashboard-nvim",
+      -- "mg979/vim-visual-multi",
+      -- "folke/zen-mode.nvim",
+      -- "ahmedkhalf/project.nvim",
       -- A blazing fast and easy to configure neovim statusline written in pure lua
-      { "hoob3rt/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } },
+      {
+        "hoob3rt/lualine.nvim",
+        requires = {
+          "kyazdani42/nvim-web-devicons",
+          opt = true
+        },
+      },
+      -- "famiu/feline.nvim",
       -- {
       --   "NTBBloodbath/galaxyline.nvim",
       --   branch = "main",
@@ -48,6 +68,8 @@ require("packer").startup {
       "nvim-treesitter/nvim-treesitter-textobjects",
       {
         "windwp/nvim-ts-autotag", -- Use treesitter to auto close and auto rename html tags
+        event = "BufWinEnter",
+        after = "nvim-treesitter",
         ft = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte", "vue" },
       },
       {
@@ -58,16 +80,13 @@ require("packer").startup {
       },
     }
     -- Collection of configurations for built-in LSP client
-    -- use { "neovim/nvim-lspconfig" }
-    -- use { "williamboman/nvim-lsp-installer" } -- Provides the missing :LspInstall for nvim-lspconfig
-    -- use { "nvim-lua/lsp-status.nvim" }
+    -- use { "williamboman/nvim-lsp-installer" }
     -- use { "glepnir/lspsaga.nvim" }
-    -- use { "ray-x/lsp_signature.nvim" }
     -- use { "onsails/lspkind-nvim" }
     -- use { "kosayoda/nvim-lightbulb" }
     -- LSP
     use {
-      "williamboman/nvim-lsp-installer",
+      "williamboman/nvim-lsp-installer", -- Provides the missing :LspInstall for nvim-lspconfig
       {
         "neovim/nvim-lspconfig",
         requires = {
@@ -78,8 +97,9 @@ require("packer").startup {
           "jose-elias-alvarez/null-ls.nvim",
         },
         after = "coq_nvim",
+        event = "VimEnter",
         config = function()
-          require("plugins.configs.lsp")
+          require "plugins.configs.lsp"
         end,
       },
     }
@@ -110,38 +130,56 @@ require("packer").startup {
           },
         }
       end,
-      -- config = function()
-      --   require("plugins.configs.coq_nvim").setup()
-      -- end,
+      config = function()
+        require("plugins.configs.coq_nvim").setup()
+      end,
     }
-    use { "windwp/nvim-autopairs" } -- A super powerful autopair for Neovim. It supports multiple characters
+    use {
+      "windwp/nvim-autopairs", -- A super powerful autopair for Neovim. It supports multiple characters
+    }
     -- Comments
     use {
-      "numToStr/Comment.nvim",
-      config = function()
-        require("Comment").setup()
-      end,
+      -- {
+      --   "terrortylor/nvim-comment",
+      --   event = "BufRead",
+      -- },
+      "JoosepAlviste/nvim-ts-context-commentstring",
+        "folke/todo-comments.nvim",
+      {
+        "numToStr/Comment.nvim",
+        config = function()
+          require("Comment").setup()
+        end,
+      },
     }
     -- Git
     use {
-      "rhysd/git-messenger.vim",
-      "rhysd/committia.vim",
+      -- "rhysd/git-messenger.vim",
+      -- "rhysd/committia.vim",
       "kdheepak/lazygit.nvim",
+        "sindrets/diffview.nvim",
       {
         "lewis6991/gitsigns.nvim",
         requires = { "nvim-lua/plenary.nvim" },
       },
+      "f-person/git-blame.nvim",
+      -- "TimUntersberger/neogit",
+      -- "tpope/vim-fugitive", -- Git commands in nvim
+      -- "tpope/vim-rhubarb", -- Fugitive-sompanion to interact with github
     }
     -- Formatting/code style
+    use { "mhartington/formatter.nvim" }
+    use { "editorconfig/editorconfig-vim" }
+    -- File Explorer
     use {
-      "mhartington/formatter.nvim",
-      "editorconfig/editorconfig-vim",
+      "ms-jpq/chadtree", -- File Manager for Neovim, Better than NERDTree
+      run = ":CHADdeps",
+      event = "BufWinEnter",
     }
-    -- MISC
-    use { "psliwka/vim-smoothie" }
-    -- use { "karb94/neoscroll.nvim" }
-    use { "ludovicchabant/vim-gutentags" } -- Automatic tags management
-    use { "ms-jpq/chadtree", run = ":CHADdeps" } -- File Manager for Neovim, Better than NERDTree
+    -- use {
+    --   "kevinhwang91/rnvimr",
+    --   event = "BufWinEnter",
+    -- }
     -- -- {
     -- --   "kyazdani42/nvim-tree.lua",
     --   setup = function()
@@ -153,8 +191,32 @@ require("packer").startup {
     --     require("plugins.configs.nvim_tree").setup()
     --   end,
     -- },
+    -- DAP
+    -- use { "mfussenegger/nvim-dap" }
+    -- use { "Pocco81/DAPInstall.nvim" }
+    -- Utils
+    use {
+      "max397574/better-escape.nvim",
+      config = function()
+        require("better_escape").setup()
+      end,
+    }
+    use { "psliwka/vim-smoothie" }
+    -- use { "karb94/neoscroll.nvim" }
+    -- use { "ludovicchabant/vim-gutentags" } -- Automatic tags management
     use { "justinmk/vim-sneak" } -- The missing motion for Vim 👟
-    use { "akinsho/toggleterm.nvim" } -- A neovim lua plugin to help easily manage multiple terminal windows
+    use {
+      "akinsho/toggleterm.nvim", -- A neovim lua plugin to help easily manage multiple terminal windows
+    }
+    -- use {
+    --   "iamcco/markdown-preview.nvim",
+    --   run = "cd app && yarn install",
+    -- }
+    use { "folke/which-key.nvim" }
+    use {
+      "kristijanhusak/orgmode.nvim",
+      branch = "tree-sitter",
+    }
     --   {
     --     "haya14busa/incsearch.vim",
     --     config = function()

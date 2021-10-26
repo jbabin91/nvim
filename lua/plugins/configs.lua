@@ -47,13 +47,13 @@ vim.api.nvim_exec(
 )
 
 -- Map blankline
-vim.g.indent_blankline_char = "┊"
-vim.g.indent_blankline_filetype_exclude = { "help", "packer" }
-vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
-vim.g.indent_blankline_char_highlight = "LineNr"
-vim.g.indent_blankline_show_trailing_blankline_indent = false
-vim.g.indent_blankline_use_treesitter = true
-vim.cmd [[set colorcolumn=99999]]
+-- vim.g.indent_blankline_char = "┊"
+-- vim.g.indent_blankline_filetype_exclude = { "help", "packer" }
+-- vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
+-- vim.g.indent_blankline_char_highlight = "LineNr"
+-- vim.g.indent_blankline_show_trailing_blankline_indent = false
+-- vim.g.indent_blankline_use_treesitter = true
+-- vim.cmd [[set colorcolumn=99999]]
 
 -- Format
 -- vim.api.nvim_exec(
@@ -274,7 +274,7 @@ require("telescope").setup {
 -- PArsers must be installded manually via :TSInstall
 require("nvim-treesitter.configs").setup {
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = false, -- false will disable the whole extension
   },
   incremental_selection = {
     enable = true,

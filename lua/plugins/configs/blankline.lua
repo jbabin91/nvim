@@ -30,7 +30,7 @@ M.config_function = function()
   cmd [[hi IndentSix guifg=#88C0D0 guibg=NONE gui=nocombine]]
   cmd [[hi IndentSeven guifg=#B48EAD guibg=NONE gui=nocombine]]
 
-  g.indent_blankline_char = "│"
+  g.indent_blankline_char = "│" -- "┊"
   g.indent_blankline_char_highlight_list = {
     "IndentOne", "IndentTwo", "IndentThree", "IndentFour", "IndentFive",
     "IndentSix", "IndentSeven"
@@ -49,6 +49,7 @@ M.config_function = function()
     "class", "function", "method", "block", "list_literal", "selector",
     "^if", "^table", "if_statement", "while", "for"
   }
+  cmd[[set colorcolumn=99999]]
   -- because lazy load indent-blankline so need this autocmd
   cmd[[ autocmd CursorMoved * IndentBlanklineRefresh ]]
 end

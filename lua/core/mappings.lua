@@ -47,11 +47,11 @@ map("v", ">", ">gv")
 -- Y yank until till end of line
 map("n", "Y", "y$", { noremap = true })
 map("v", "y", "ygv<esc>")
-map("i", "jk", "<esc>", { noremap = true })
-map("i", "kj", "<esc>", { noremap = true })
+-- map("i", "jk", "<esc>", { noremap = true })
+-- map("i", "kj", "<esc>", { noremap = true })
 map("t", "<C-q>", [[<C-\><C-n>]], { noremap = true })
-map("t", "jk", [[<C-\><C-n>]], { noremap = true })
-map("t", "kj", [[<C-\><C-n>]], { noremap = true })
+-- map("t", "jk", [[<C-\><C-n>]], { noremap = true })
+-- map("t", "kj", [[<C-\><C-n>]], { noremap = true })
 map("t", "<C-h>", [[<C-\><C-n><C-W>h]], { noremap = true })
 map("t", "<C-j>", [[<C-\><C-n><C-W>j]], { noremap = true })
 map("t", "<C-k>", [[<C-\><C-n><C-W>k]], { noremap = true })
@@ -66,8 +66,8 @@ map("i", "<c-j>", '"\\<c-n>"', { expr = true })
 map("i", "<c-k>", '"\\<c-p>"', { expr = true })
 
 -- Buffer nav
-map("n", "<Tab>", ":WintabsNext<CR>")
-map("n", "<S-Tab>", ":WintabsPrevious<CR>")
+-- map("n", "<Tab>", ":WintabsNext<CR>")
+-- map("n", "<S-Tab>", ":WintabsPrevious<CR>")
 
 -- Window nav
 map("n", "<c-h>", "<c-w>h")
