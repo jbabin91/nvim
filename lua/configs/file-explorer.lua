@@ -1,0 +1,25 @@
+-- vim.g.nvim_tree_indent_markers = 1
+
+-- vim.cmd
+-- [[
+--   let g:nvim_tree_window_picker_exclude = {
+--   \  'filetype': [
+--   \    'notify',
+--   \    'packer',
+--   \    'qf',
+--   \    'vista',
+--   \  ],
+--   \  'buftype': [
+--   \    'terminal',
+--   \  ]
+--   \ }
+-- ]]
+
+-- require("nvim-tree").setup({
+--   update_focused_file = {
+--     enable = true,
+--   },
+--   filters = {
+--     dotfiles = true,
+--   },
+-- })
