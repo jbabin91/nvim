@@ -1,5 +1,12 @@
+local cmd = vim.cmd
 local keymap = vim.api.nvim_set_keymap
 local options = { noremap=true, silent=true }
+
+--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
+--━━━━━━━━━━━━━❰ Plugin-Independent Mapping ❱━━━━━━━━━━━━━--
+--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
+-- This config file contains the mapping that don't depend
+
 
 --━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
 --━━━━━━━━━━━━━━━━━━━❰ Bufferline Mappings ❱━━━━━━━━━━━━━━━━━━━--

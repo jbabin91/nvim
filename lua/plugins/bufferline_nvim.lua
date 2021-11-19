@@ -71,3 +71,36 @@ require("bufferline").setup({
     },
   },
 })
+
+
+--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
+--━━━━━━━━━━━━━━━━━━━❰ Bufferline Mappings ❱━━━━━━━━━━━━━━━━━━━--
+--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
+
+local map = require("utils").map
+
+-- Move to previous/next
+map("n", "}}", ":BufferLineCycleNext<CR>")
+map("n", "{{", ":BufferLineCyclePrev<CR>")
+
+-- Re-order to previous/next
+map("n", "<Leader>.", ":BufferLineMoveNext<CR>")
+map("n", "<Leader>,", ":BufferLineMovePrev<CR>")
+
+-- Close buffer
+-- nnoremap <silent> <A-c> :BufferClose<CR>
+map("n", "<Leader>q", ":bd<CR>")
+
+-- Magic buffer-picking mode
+map("n", "<Leader>?", ":BufferLinePick<CR>")
+
+-- go to buffer number
+map("n", "<Leader>1", ":BufferLineGoToBuffer 1<CR>")
+map("n", "<Leader>2", ":BufferLineGoToBuffer 2<CR>")
+map("n", "<Leader>3", ":BufferLineGoToBuffer 3<CR>")
+map("n", "<Leader>4", ":BufferLineGoToBuffer 4<CR>")
+map("n", "<Leader>5", ":BufferLineGoToBuffer 5<CR>")
+map("n", "<Leader>6", ":BufferLineGoToBuffer 6<CR>")
+map("n", "<Leader>7", ":BufferLineGoToBuffer 7<CR>")
+map("n", "<Leader>8", ":BufferLineGoToBuffer 8<CR>")
+map("n", "<Leader>9", ":BufferLineGoToBuffer 9<CR>")
