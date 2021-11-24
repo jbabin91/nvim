@@ -185,6 +185,11 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
   ["nvim-autopairs"] = {
     config = { 'require("plugins/autopairs")' },
     loaded = true,
@@ -288,6 +293,11 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
+  },
   ["trouble.nvim"] = {
     config = { 'require("plugins/trouble_nvim")' },
     loaded = true,
@@ -314,18 +324,30 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-lsp-installer
-time([[Config for nvim-lsp-installer]], true)
-require("plugins/lsp_installer_nvim")
-time([[Config for nvim-lsp-installer]], false)
--- Config for: feline.nvim
-time([[Config for feline.nvim]], true)
-require("plugins/feline_nvim")
-time([[Config for feline.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require("plugins/autopairs")
-time([[Config for nvim-autopairs]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require("plugins/trouble_nvim")
+time([[Config for trouble.nvim]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+require("plugins/comment_nvim")
+time([[Config for Comment.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require("plugins/tree_nvim")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: vim-floaterm
+time([[Config for vim-floaterm]], true)
+require("plugins/floaterm")
+time([[Config for vim-floaterm]], false)
+-- Config for: FTerm.nvim
+time([[Config for FTerm.nvim]], true)
+require("plugins/fterm_nvim")
+time([[Config for FTerm.nvim]], false)
+-- Config for: vim-maximizer
+time([[Config for vim-maximizer]], true)
+require("plugins/maximizer")
+time([[Config for vim-maximizer]], false)
 -- Config for: flutter-tools.nvim
 time([[Config for flutter-tools.nvim]], true)
 require("plugins/fluttertools")
@@ -334,86 +356,74 @@ time([[Config for flutter-tools.nvim]], false)
 time([[Config for formatter.nvim]], true)
 require("plugins/formatter")
 time([[Config for formatter.nvim]], false)
--- Config for: nvim-web-devicons
-time([[Config for nvim-web-devicons]], true)
-require("plugins/webdevicons_nvim")
-time([[Config for nvim-web-devicons]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-require("plugins/comment_nvim")
-time([[Config for Comment.nvim]], false)
--- Config for: FTerm.nvim
-time([[Config for FTerm.nvim]], true)
-require("plugins/fterm_nvim")
-time([[Config for FTerm.nvim]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require("plugins/gitsigns_nvim")
-time([[Config for gitsigns.nvim]], false)
--- Config for: surround.nvim
-time([[Config for surround.nvim]], true)
-require("plugins/surround_nvim")
-time([[Config for surround.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require("plugins/tree_nvim")
-time([[Config for nvim-tree.lua]], false)
--- Config for: indentLine
-time([[Config for indentLine]], true)
-require("plugins/indentLine")
-time([[Config for indentLine]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require("plugins/luasnip")
-time([[Config for LuaSnip]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require("plugins/telescope")
-time([[Config for telescope.nvim]], false)
--- Config for: lsp-status.nvim
-time([[Config for lsp-status.nvim]], true)
-require("plugins/lspstatus")
-time([[Config for lsp-status.nvim]], false)
 -- Config for: nvim-ts-autotag
 time([[Config for nvim-ts-autotag]], true)
 require("plugins/ts-autotag_nvim")
 time([[Config for nvim-ts-autotag]], false)
--- Config for: lspkind-nvim
-time([[Config for lspkind-nvim]], true)
-require("plugins/lspkind")
-time([[Config for lspkind-nvim]], false)
--- Config for: vim-floaterm
-time([[Config for vim-floaterm]], true)
-require("plugins/floaterm")
-time([[Config for vim-floaterm]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-require("plugins/trouble_nvim")
-time([[Config for trouble.nvim]], false)
--- Config for: nvim-bufferline.lua
-time([[Config for nvim-bufferline.lua]], true)
-require("plugins/bufferline_nvim")
-time([[Config for nvim-bufferline.lua]], false)
--- Config for: vim-maximizer
-time([[Config for vim-maximizer]], true)
-require("plugins/maximizer")
-time([[Config for vim-maximizer]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require("plugins/cmp")
-time([[Config for nvim-cmp]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require("plugins/treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require("plugins/colorizer")
-time([[Config for nvim-colorizer.lua]], false)
+-- Config for: nvim-lsp-installer
+time([[Config for nvim-lsp-installer]], true)
+require("plugins/lsp_installer_nvim")
+time([[Config for nvim-lsp-installer]], false)
+-- Config for: nvim-web-devicons
+time([[Config for nvim-web-devicons]], true)
+require("plugins/webdevicons_nvim")
+time([[Config for nvim-web-devicons]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require("plugins/gitsigns_nvim")
+time([[Config for gitsigns.nvim]], false)
 -- Config for: rooter.nvim
 time([[Config for rooter.nvim]], true)
 require("plugins/rooter_nvim")
 time([[Config for rooter.nvim]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require("plugins/luasnip")
+time([[Config for LuaSnip]], false)
+-- Config for: feline.nvim
+time([[Config for feline.nvim]], true)
+require("plugins/feline_nvim")
+time([[Config for feline.nvim]], false)
+-- Config for: nvim-bufferline.lua
+time([[Config for nvim-bufferline.lua]], true)
+require("plugins/bufferline_nvim")
+time([[Config for nvim-bufferline.lua]], false)
+-- Config for: surround.nvim
+time([[Config for surround.nvim]], true)
+require("plugins/surround_nvim")
+time([[Config for surround.nvim]], false)
+-- Config for: indentLine
+time([[Config for indentLine]], true)
+require("plugins/indentLine")
+time([[Config for indentLine]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require("plugins/cmp")
+time([[Config for nvim-cmp]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require("plugins/autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: lsp-status.nvim
+time([[Config for lsp-status.nvim]], true)
+require("plugins/lspstatus")
+time([[Config for lsp-status.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require("plugins/colorizer")
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("plugins/treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: lspkind-nvim
+time([[Config for lspkind-nvim]], true)
+require("plugins/lspkind")
+time([[Config for lspkind-nvim]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require("plugins/telescope")
+time([[Config for telescope.nvim]], false)
 -- Config for: dart-vim-plugin
 time([[Config for dart-vim-plugin]], true)
 require("plugins/dart_vim_plugin")

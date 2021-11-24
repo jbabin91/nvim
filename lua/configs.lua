@@ -16,8 +16,8 @@ local cmd  = vim.cmd           -- execute Vim commands
 -- local w    = vim.wo            -- windows-scoped options
 
 -- To show whitespace, MUST be inserted BEFORE the colorscheme command
-cmd([[autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=grey]])
-cmd([[colorscheme rvcs]])
+-- cmd([[autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=grey]])
+-- cmd([[colorscheme tokyonight]])
 
 set.termguicolors = true  -- Enable GUI colors for the terminal to get truecolor
 set.list          = true  -- Show whitespace

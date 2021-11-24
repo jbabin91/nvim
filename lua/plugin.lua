@@ -18,8 +18,8 @@ require("packer").startup({
   function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
---━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
---━━━━━━━━━━━━━━━❰ currently Using ❱━━━━━━━━━━━━━━━━━--
+    --━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
+    --━━━━━━━━━━━━━━━❰ currently Using ❱━━━━━━━━━━━━━━━━━--
     -- Speed up loading Lua modules in Neovim to improve startup time.
     use("lewis6991/impatient.nvim")
     -- Easily speed up your neovim startup time! A faster version of filetype.vim

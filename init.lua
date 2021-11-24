@@ -4,6 +4,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 --━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
 
+--━━━━━━━━━━━━━❰ Color Theme ❱━━━━━━━━━━━━━--
+-- options: [ "tokyonight", "rvcs", "nightfox" ]
+local theme = "tokyonight"
+--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
+
 --━━━━━━━━━━━━━❰ Load/Source Configs ❱━━━━━━━━━━━━━--
 -- plugin config to improve startup-time.
 -- it should be always on top of init.lua
@@ -17,6 +22,7 @@ require("plugin")
 
 require("configs")
 require("mappings")
+require("colors."..theme)
 
 -- Roshniline
 -- require("customs/roshniline")
