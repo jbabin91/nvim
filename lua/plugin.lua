@@ -16,7 +16,7 @@ require("packer").startup({
     use({
       "tpope/vim-commentary",  -- "gc" to comment visual regions/lines
       -- "tpope/vim-repeat",      -- enable repeating supported plugin maps with "."
-      "tpope/vim-speeddating", -- use CTRL-A/CTRL-X to increase dates, times, and more
+      -- "tpope/vim-speeddating", -- use CTRL-A/CTRL-X to increase dates, times, and more
       "tpope/vim-surround",    -- quoting/parenthesizing made simple
       -- "tpope/vim-unimpaired",  -- Pairs of handy bracket mappings
       "tpope/vim-eunuch",      -- Adds a dozen core Unix file operations as Vim commands
@@ -24,13 +24,13 @@ require("packer").startup({
     -- Web development
     use({
       "mattn/emmet-vim",
-      "editorconfig/editorconfig-vim",
-      "vuki656/package-info.nvim", -- Display latest package version as virtual text in package.json
+      -- "editorconfig/editorconfig-vim",
+      -- "vuki656/package-info.nvim", -- Display latest package version as virtual text in package.json
     })
     -- Databases
-    use({
-      "nanotee/sqls.nvim", -- SQLs (sql database connection plugin + LSP client)
-    })
+    -- use({
+    --   "nanotee/sqls.nvim", -- SQLs (sql database connection plugin + LSP client)
+    -- })
     -- LSP improvements
     use({
       "jose-elias-alvarez/nvim-lsp-ts-utils", -- Utilities to improve the Typescript development experience
@@ -41,9 +41,9 @@ require("packer").startup({
     --   "ms-jpq/coq_nvim", -- Fast as F*CK Neovim completion.
     -- })
     -- AI code
-    use({
-      "jameshiew/nvim-magic", -- Framework for integrating AI code assistance.
-    })
+    -- use({
+    --   "jameshiew/nvim-magic", -- Framework for integrating AI code assistance.
+    -- })
     -- Markdown
     use({
       "ellisonleao/glow.nvim", -- Markdown preview using glow
@@ -58,17 +58,27 @@ require("packer").startup({
       "max397574/better-escape.nvim", -- Create shortcuts to escape insert mode without getting delay
       "rcarriga/nvim-notify", -- A fancy, configurable, notification manager for Neovim
       "lewis6991/spellsitter.nvim", -- Enable Neovim's spell checker with tree-sitter
+    })
+    -- Dashboard
+    use({
       "goolord/alpha-nvim", -- A fast and highly customizable greeter like vim-startify/dashboard-nvim for Neovim
+      requires = { "kyazdani42/nvim-web-devicons" },
+      config = function()
+        require("alpha").setup(
+          require("alpha.themes.dashboard").opts
+        )
+      end,
     })
     -- Debuggin
-    use({
-      "mfussenegger/nvim-dap", -- Debug Adapter Protocol client implementation for Neovim
-      "rcarriga/nvim-dap-ui", -- A UI for nvim-dap
-      "Pocco81/DAPInstall.nvim", -- A Neovim plugin for managing several debuggers for Nvim-dap
-    })
+    -- use({
+    --   "mfussenegger/nvim-dap", -- Debug Adapter Protocol client implementation for Neovim
+    --   "rcarriga/nvim-dap-ui", -- A UI for nvim-dap
+    --   "Pocco81/DAPInstall.nvim", -- A Neovim plugin for managing several debuggers for Nvim-dap
+    -- })
     -- UI Indent visualizer
     use({
       "lukas-reineke/indent-blankline.nvim",
+      config = [[require("plugins/indentLine")]],
     })
     -- File Trees
     -- use({
@@ -76,42 +86,57 @@ require("packer").startup({
     --   cmd = ":CHADdeps",
     -- })
     -- Git
+    use({
+      "TimUntersberger/neogit", -- A Magit clone for Neovim that change some things to fit the Vim philosophy
+      -- "tveskag/nvim-blame-line", -- A small plugin that uses neovims virtual text to print git blame info
+      -- "sindrets/diffview.nvim", -- Single tabpage interface for easily cycling through diffs for all modified files.
+      -- "kdheepak/lazygit.nvim", -- Plugin for calling lazygit from within Neovim
+    })
     -- use({
-    --   "TimUntersberger/neogit", -- A Magit clone for Neovim that change some things to fit the Vim philosophy
-    --   "tveskag/nvim-blame-line", -- A small plugin that uses neovims virtual text to print git blame info
     --   "tanvirtin/vgit.nvim", -- Visual Git Plugin for Neovim to enhance your git experience
-    --   "sindrets/diffview.nvim", -- Single tabpage interface for easily cycling through diffs for all modified files.
-    --   "kdheepak/lazygit.nvim", -- Plugin for calling lazygit from within Neovim
+    --   event = "BufWinEnter",
+    --   requires = {
+    --     "nvim-lua/plenary.nvim",
+    --   },
+    --   config = function()
+    --     require("vgit").setup()
+    --   end,
     -- })
     -- Motion
     use({
       "phaazon/hop.nvim", -- Hop is an EasyMotion-like plugin allowing you to jump anywhere in a document.
+      branch = "v1",
+      config = function()
+        require("hop").setup({
+          keys = "etovxqpdygfblzhckisuran"
+        })
+      end,
       -- "ggandor/lightspeed.nvim", -- A Sneak-like plugin offering unparalleled navigation speed via ahead-of-time displayed labels.
     })
     -- Editing Support
-    use({
-      "nacro90/numb.nvim", -- Peek lines in a non-obtrusive way
-      "McAuleyPenney/tidy.nvim", -- Clear trailing whitespace and empty lines at end of file on every save
-    })
+    -- use({
+    --   "nacro90/numb.nvim", -- Peek lines in a non-obtrusive way
+    --   "McAuleyPenney/tidy.nvim", -- Clear trailing whitespace and empty lines at end of file on every save
+    -- })
     -- Treesitter plugins
-    use({
-      "p00f/nvim-ts-rainbow", -- Rainbow 🌈 parentheses for Neovim using tree-sitter 🌈
-      "JoosepAlviste/nvim-ts-context-commentstring", -- A Neovim plugin for setting the =commentstring= option based on the cursor location in the file.
-    })
+    -- use({
+    --   "p00f/nvim-ts-rainbow", -- Rainbow 🌈 parentheses for Neovim using tree-sitter 🌈
+    --   "JoosepAlviste/nvim-ts-context-commentstring", -- A Neovim plugin for setting the =commentstring= option based on the cursor location in the file.
+    -- })
     -- Command Line
-    use({
-      "gelguy/wilder.nvim", -- A plugin for fuzzy command line autocompletion
-    })
+    -- use({
+    --   "gelguy/wilder.nvim", -- A plugin for fuzzy command line autocompletion
+    -- })
     -- Keybinding
     use({
       "AckslD/nvim-whichkey-setup.lua", -- Plugin that wraps vim-which-key to simplify setup in Lua
       "folke/which-key.nvim", -- Neovim plugin that shows a popup with possible keybindings of the command you started typing.
       "LionC/nest.nvim", -- Lua utility to map keys concisely using cascading trees.
     })
-    use({
-      "sindrets/winshift.nvim", -- Rearrange your windows with ease
-      "luukvbaal/stabilize.nvim", -- Stabilized window content on window open/close events
-    })
+    -- use({
+    --   "sindrets/winshift.nvim", -- Rearrange your windows with ease
+    --   "luukvbaal/stabilize.nvim", -- Stabilized window content on window open/close events
+    -- })
 
     -- Other plugins
     -- Packer can manage itself
@@ -173,6 +198,7 @@ require("packer").startup({
     -- use("shaeinst/roshnivim-cs")
     use("folke/tokyonight.nvim")
     use("EdenEast/nightfox.nvim")
+    use({"dracula/vim", as = "dracula"})
     -- Nvim Treesitter configurations and abstraction layer
     use({
       "nvim-treesitter/nvim-treesitter",
@@ -262,10 +288,11 @@ require("packer").startup({
     --   config = [[ require('plugins/barbar_nvim') ]]
     -- }
     -- A File Explorer for Neovim written in lua.
-    use({
-      "kyazdani42/nvim-tree.lua",
-      config = [[require("plugins/tree_nvim")]],
-    })
+    -- use({
+    --   "kyazdani42/nvim-tree.lua",
+    --   requires = "kyazdani42/nvim-web-devicons",
+    --   config = [[require("plugins/tree_nvim")]],
+    -- })
     -- A minimal, stylish, and customizable statusline for Neovim written in lua.
     use({
       "Famiu/feline.nvim",

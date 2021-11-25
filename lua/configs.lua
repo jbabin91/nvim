@@ -36,35 +36,30 @@ set.fillchars = {
   vert     = " ",  -- remove ugly vertical lines on window division
 }
 
-if root then
-  set.shada         = ''            -- Don't create root-owned files.
-  set.shadafile     = 'NONE'
-else
-  local backup_dir  = vim.fn.expand('~/.cache/nvim')
-  set.backup        = true                      -- make backups before writing
-  set.undofile      = false                     --persistent undos - undo after you re-open the file
-  set.writebackup   = true                      --Make backup before overwriting the current buffer
-  set.backupcopy    = 'yes'                     --Overwrite the original backup file
-  set.directory     = backup_dir .. '/swap'     -- directory to place swap files in
-  set.backupdir     = backup_dir .. '/backedUP' -- where to put backup files
-  set.undodir       = backup_dir .. '/undos'    -- where to put undo files
-  set.viewdir       = backup_dir .. '/view'     -- where to store files for :mkview
-      -- Defaults:
-      --   Neovim: !,'100,<50,s10,h
-      --
-      -- - ! save/restore global variables (only all-uppercase variables)
-      -- - '100 save/restore marks from last 100 files
-      -- - <50 save/restore 50 lines from each register
-      -- - s10 max item size 10KB
-      -- - h do not save/restore 'hlsearch' setting
-      --
-      -- Our overrides:
-      -- - '0 store marks for 0 files
-      -- - <0 don't save registers
-      -- - f0 don't store file marks
-      -- - n: store in ~/.cache/nvim/shada
-  set.shada = "'100,<50,f50,n~/.cache/nvim/shada/shada"
-end
+local backup_dir  = vim.fn.expand('~/.cache/nvim')
+set.backup        = true                      -- make backups before writing
+set.undofile      = false                     --persistent undos - undo after you re-open the file
+set.writebackup   = true                      --Make backup before overwriting the current buffer
+set.backupcopy    = 'yes'                     --Overwrite the original backup file
+set.directory     = backup_dir .. '/swap'     -- directory to place swap files in
+set.backupdir     = backup_dir .. '/backedUP' -- where to put backup files
+set.undodir       = backup_dir .. '/undos'    -- where to put undo files
+set.viewdir       = backup_dir .. '/view'     -- where to store files for :mkview
+  -- Defaults:
+  --   Neovim: !,'100,<50,s10,h
+  --
+  -- - ! save/restore global variables (only all-uppercase variables)
+  -- - '100 save/restore marks from last 100 files
+  -- - <50 save/restore 50 lines from each register
+  -- - s10 max item size 10KB
+  -- - h do not save/restore 'hlsearch' setting
+  --
+  -- Our overrides:
+  -- - '0 store marks for 0 files
+  -- - <0 don't save registers
+  -- - f0 don't store file marks
+  -- - n: store in ~/.cache/nvim/shada
+set.shada = "'100,<50,f50,n~/.cache/nvim/shada/shada"
 
 set.clipboard      = set.clipboard + "unnamedplus" -- copy & paste
 set.wrap           = false                         -- don't automatically wrap on load
@@ -75,7 +70,7 @@ set.showmatch      = true                          -- show the matching part of 
 -- cmd('syntax on')                    -- color syntax enable
 -- set.synmaxcol       = 200           -- don't bother syntax highlighting long lines
 
-set.cursorcolumn   = false                         -- highlight current column
+set.cursorcolumn   = true                         -- highlight current column
 set.cursorline     = true                          -- highlight current line
 set.number         = true                          -- show line numbers
 set.relativenumber = true                          -- show relative line number
@@ -87,7 +82,7 @@ set.scrolloff      = 8                             -- when scrolling, keep curso
 set.sidescrolloff  = 8                             -- keep 8 columns visible left and right of the cursor at all times
 set.backspace      = "indent,start,eol"            -- make backspace behave lke normal again
 set.mouse          = "a"                           -- turn on mouse interaction
-set.updatetime     = 500                           -- CursorHold interval
+set.updatetime     = 350                           -- CursorHold interval
 set.softtabstop    = 2
 set.shiftwidth     = 2                             -- spaces per tab (when shifting), when using the >> or << commands, shift lines by 2
 set.tabstop        = 2                             -- spaces per tab
@@ -114,31 +109,31 @@ exec([[
 ]], false)
 
 -- jump to the last position when reopening a file
-cmd([[
-  if has("autocmd")
-    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-  endif
-]])
+-- cmd([[
+--   if has("autocmd")
+--     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+--   endif
+-- ]])
 
 -- patterns to ignore during file-navigation
 set.wildignore      = set.wildignore + "*.o,*.rej,*.so"
 -- remove whitespace on save
-cmd([[au BufWritePre * :%s/\s\+$//e]])
+-- cmd([[au BufWritePre * :%s/\s\+$//e]])
 -- faster scrolling
-set.lazyredraw = true
+-- set.lazyredraw = true
 -- don't auto commenting new line
-cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
+-- cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
 -- completion options
 set.completeopt = "menuone,noselect,noinsert"
 
 --━━━━━━━━━━━━━━━❰ Automate ❱━━━━━━━━━━━━━━━━--
 
 -- 2 spaces for selected filetypes
-cmd([[autocmd FileType xml,html,xhtml,css,scss,javascript,lua,dart setlocal shiftwidth=2 tabstop=2]])
+-- cmd([[autocmd FileType xml,html,xhtml,css,scss,javascript,lua,dart setlocal shiftwidth=2 tabstop=2]])
 -- 4 spaces for selected filetypes
-cmd([[autocmd FileType python,c,cpp setlocal sw=4 ts=4]])
+-- cmd([[autocmd FileType python,c,cpp setlocal sw=4 ts=4]])
 -- 8 spaces for Go files
-cmd([[autocmd FileType go setlocal sw=8 ts=8]])
+-- cmd([[autocmd FileType go setlocal sw=8 ts=8]])
 
 -- for specific filetypes/languages
 -- NOTE: et = extand tab
@@ -146,14 +141,14 @@ cmd([[autocmd FileType go setlocal sw=8 ts=8]])
 --       fo = Create a fold for the lines in {range}
 
 -- python
-cmd([[au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql]])
+-- cmd([[au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql]])
 -- C/C++
-cmd([[au BufEnter *.c,*.cpp,*cxx,*C,*CPP set ai sw=4 ts=4 sta fo=croql]])
+-- cmd([[au BufEnter *.c,*.cpp,*cxx,*C,*CPP set ai sw=4 ts=4 sta fo=croql]])
 -- lua
-cmd([[au BufEnter *.lua set ai et sw=2 ts=2 sta fo=croql]])
+-- cmd([[au BufEnter *.lua set ai et sw=2 ts=2 sta fo=croql]])
 -- vim
-cmd([[au BufEnter *.vim set ai et sw=2 ts=2 sta fo=croql]])
+-- cmd([[au BufEnter *.vim set ai et sw=2 ts=2 sta fo=croql]])
 -- json
-cmd([[au BufEnter *.json set ai et sw=2 ts=2 sta fo=croql]])
+-- cmd([[au BufEnter *.json set ai et sw=2 ts=2 sta fo=croql]])
 
 --━━━━━━━━━━━━━━━❰ end of Automate ❱━━━━━━━━━━━━━━━━--

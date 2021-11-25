@@ -12,7 +12,7 @@ local theme = "tokyonight"
 --━━━━━━━━━━━━━❰ Load/Source Configs ❱━━━━━━━━━━━━━--
 -- plugin config to improve startup-time.
 -- it should be always on top of init.lua
-
+require("disabled")
 -- impatient needs to be setup before any other lua plugin is loaded so it is recommended you add the following near the start of your config
 require("plugins/impatient_nvim")
 -- Easily speed up your neovim startup time!
