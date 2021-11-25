@@ -69,17 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["Comment.nvim"] = {
-    config = { 'require("plugins/comment_nvim")' },
+  ["DAPInstall.nvim"] = {
     loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/Comment.nvim",
-    url = "https://github.com/numToStr/Comment.nvim"
-  },
-  ["FTerm.nvim"] = {
-    config = { 'require("plugins/fterm_nvim")' },
-    loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/FTerm.nvim",
-    url = "https://github.com/numToStr/FTerm.nvim"
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/DAPInstall.nvim",
+    url = "https://github.com/Pocco81/DAPInstall.nvim"
   },
   LuaSnip = {
     config = { 'require("plugins/luasnip")' },
@@ -87,10 +80,15 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["awesome-flutter-snippets"] = {
+  ["alpha-nvim"] = {
     loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/awesome-flutter-snippets",
-    url = "https://github.com/Neevash/awesome-flutter-snippets"
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/alpha-nvim",
+    url = "https://github.com/goolord/alpha-nvim"
+  },
+  ["better-escape.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/better-escape.nvim",
+    url = "https://github.com/max397574/better-escape.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -122,11 +120,15 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["dart-vim-plugin"] = {
-    config = { 'require("plugins/dart_vim_plugin")' },
+  ["editorconfig-vim"] = {
     loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/dart-vim-plugin",
-    url = "https://github.com/dart-lang/dart-vim-plugin"
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/editorconfig-vim",
+    url = "https://github.com/editorconfig/editorconfig-vim"
+  },
+  ["emmet-vim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/emmet-vim",
+    url = "https://github.com/mattn/emmet-vim"
   },
   ["feline.nvim"] = {
     config = { 'require("plugins/feline_nvim")' },
@@ -138,12 +140,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/filetype.nvim",
     url = "https://github.com/nathom/filetype.nvim"
-  },
-  ["flutter-tools.nvim"] = {
-    config = { 'require("plugins/fluttertools")' },
-    loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/flutter-tools.nvim",
-    url = "https://github.com/akinsho/flutter-tools.nvim"
   },
   ["formatter.nvim"] = {
     config = { 'require("plugins/formatter")' },
@@ -162,16 +158,28 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["glow.nvim"] = {
+    commands = { ":GlowInstall" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/opt/glow.nvim",
+    url = "https://github.com/ellisonleao/glow.nvim"
+  },
+  ["hop.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/hop.nvim",
+    url = "https://github.com/phaazon/hop.nvim"
+  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/impatient.nvim",
     url = "https://github.com/lewis6991/impatient.nvim"
   },
-  indentLine = {
-    config = { 'require("plugins/indentLine")' },
+  ["indent-blankline.nvim"] = {
     loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/indentLine",
-    url = "https://github.com/Yggdroot/indentLine"
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
   ["lsp-status.nvim"] = {
     config = { 'require("plugins/lspstatus")' },
@@ -185,10 +193,25 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
+  neorg = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/neorg",
+    url = "https://github.com/vhyrro/neorg"
+  },
+  ["nest.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nest.nvim",
+    url = "https://github.com/LionC/nest.nvim"
+  },
   ["nightfox.nvim"] = {
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
     url = "https://github.com/EdenEast/nightfox.nvim"
+  },
+  ["numb.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/numb.nvim",
+    url = "https://github.com/nacro90/numb.nvim"
   },
   ["nvim-autopairs"] = {
     config = { 'require("plugins/autopairs")' },
@@ -214,17 +237,42 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
+  },
   ["nvim-lsp-installer"] = {
     config = { 'require("plugins/lsp_installer_nvim")' },
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
     url = "https://github.com/williamboman/nvim-lsp-installer"
   },
+  ["nvim-lsp-ts-utils"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils",
+    url = "https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils"
+  },
   ["nvim-lspconfig"] = {
     config = { 'require("plugins/lspconfig")' },
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-magic"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-magic",
+    url = "https://github.com/jameshiew/nvim-magic"
+  },
+  ["nvim-notify"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-notify",
+    url = "https://github.com/rcarriga/nvim-notify"
   },
   ["nvim-tree.lua"] = {
     config = { 'require("plugins/tree_nvim")' },
@@ -244,11 +292,31 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
     url = "https://github.com/windwp/nvim-ts-autotag"
   },
+  ["nvim-ts-context-commentstring"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
+    url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
+  },
+  ["nvim-ts-rainbow"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
+    url = "https://github.com/p00f/nvim-ts-rainbow"
+  },
   ["nvim-web-devicons"] = {
     config = { 'require("plugins/webdevicons_nvim")' },
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
+  },
+  ["nvim-whichkey-setup.lua"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-whichkey-setup.lua",
+    url = "https://github.com/AckslD/nvim-whichkey-setup.lua"
+  },
+  ["package-info.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/package-info.nvim",
+    url = "https://github.com/vuki656/package-info.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -265,22 +333,20 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  ["rooter.nvim"] = {
-    config = { 'require("plugins/rooter_nvim")' },
+  ["spellsitter.nvim"] = {
     loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/rooter.nvim",
-    url = "https://github.com/ygm2/rooter.nvim"
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/spellsitter.nvim",
+    url = "https://github.com/lewis6991/spellsitter.nvim"
   },
-  ["roshnivim-cs"] = {
+  ["sqls.nvim"] = {
     loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/roshnivim-cs",
-    url = "https://github.com/shaeinst/roshnivim-cs"
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/sqls.nvim",
+    url = "https://github.com/nanotee/sqls.nvim"
   },
-  ["surround.nvim"] = {
-    config = { 'require("plugins/surround_nvim")' },
+  ["stabilize.nvim"] = {
     loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/surround.nvim",
-    url = "https://github.com/blackcauldron7/surround.nvim"
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/stabilize.nvim",
+    url = "https://github.com/luukvbaal/stabilize.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
@@ -293,6 +359,11 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tidy.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/tidy.nvim",
+    url = "https://github.com/McAuleyPenney/tidy.nvim"
+  },
   ["tokyonight.nvim"] = {
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
@@ -304,134 +375,132 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
-  ["vim-floaterm"] = {
-    config = { 'require("plugins/floaterm")' },
+  ["vim-commentary"] = {
     loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/vim-floaterm",
-    url = "https://github.com/voldikss/vim-floaterm"
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/vim-commentary",
+    url = "https://github.com/tpope/vim-commentary"
   },
-  ["vim-maximizer"] = {
-    config = { 'require("plugins/maximizer")' },
+  ["vim-eunuch"] = {
     loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/vim-maximizer",
-    url = "https://github.com/szw/vim-maximizer"
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/vim-eunuch",
+    url = "https://github.com/tpope/vim-eunuch"
+  },
+  ["vim-speeddating"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/vim-speeddating",
+    url = "https://github.com/tpope/vim-speeddating"
   },
   ["vim-startuptime"] = {
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/vim-startuptime",
     url = "https://github.com/dstein64/vim-startuptime"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/vim-surround",
+    url = "https://github.com/tpope/vim-surround"
+  },
+  ["vista.vim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/vista.vim",
+    url = "https://github.com/liuchengxu/vista.vim"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
+  },
+  ["wilder.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/wilder.nvim",
+    url = "https://github.com/gelguy/wilder.nvim"
+  },
+  ["winshift.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/winshift.nvim",
+    url = "https://github.com/sindrets/winshift.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-require("plugins/trouble_nvim")
-time([[Config for trouble.nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-require("plugins/comment_nvim")
-time([[Config for Comment.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require("plugins/tree_nvim")
-time([[Config for nvim-tree.lua]], false)
--- Config for: vim-floaterm
-time([[Config for vim-floaterm]], true)
-require("plugins/floaterm")
-time([[Config for vim-floaterm]], false)
--- Config for: FTerm.nvim
-time([[Config for FTerm.nvim]], true)
-require("plugins/fterm_nvim")
-time([[Config for FTerm.nvim]], false)
--- Config for: vim-maximizer
-time([[Config for vim-maximizer]], true)
-require("plugins/maximizer")
-time([[Config for vim-maximizer]], false)
--- Config for: flutter-tools.nvim
-time([[Config for flutter-tools.nvim]], true)
-require("plugins/fluttertools")
-time([[Config for flutter-tools.nvim]], false)
--- Config for: formatter.nvim
-time([[Config for formatter.nvim]], true)
-require("plugins/formatter")
-time([[Config for formatter.nvim]], false)
--- Config for: nvim-ts-autotag
-time([[Config for nvim-ts-autotag]], true)
-require("plugins/ts-autotag_nvim")
-time([[Config for nvim-ts-autotag]], false)
--- Config for: nvim-lsp-installer
-time([[Config for nvim-lsp-installer]], true)
-require("plugins/lsp_installer_nvim")
-time([[Config for nvim-lsp-installer]], false)
--- Config for: nvim-web-devicons
-time([[Config for nvim-web-devicons]], true)
-require("plugins/webdevicons_nvim")
-time([[Config for nvim-web-devicons]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require("plugins/gitsigns_nvim")
-time([[Config for gitsigns.nvim]], false)
--- Config for: rooter.nvim
-time([[Config for rooter.nvim]], true)
-require("plugins/rooter_nvim")
-time([[Config for rooter.nvim]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require("plugins/luasnip")
-time([[Config for LuaSnip]], false)
--- Config for: feline.nvim
-time([[Config for feline.nvim]], true)
-require("plugins/feline_nvim")
-time([[Config for feline.nvim]], false)
--- Config for: nvim-bufferline.lua
-time([[Config for nvim-bufferline.lua]], true)
-require("plugins/bufferline_nvim")
-time([[Config for nvim-bufferline.lua]], false)
--- Config for: surround.nvim
-time([[Config for surround.nvim]], true)
-require("plugins/surround_nvim")
-time([[Config for surround.nvim]], false)
--- Config for: indentLine
-time([[Config for indentLine]], true)
-require("plugins/indentLine")
-time([[Config for indentLine]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require("plugins/cmp")
-time([[Config for nvim-cmp]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require("plugins/autopairs")
-time([[Config for nvim-autopairs]], false)
--- Config for: lsp-status.nvim
-time([[Config for lsp-status.nvim]], true)
-require("plugins/lspstatus")
-time([[Config for lsp-status.nvim]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 require("plugins/colorizer")
 time([[Config for nvim-colorizer.lua]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require("plugins/treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: lspkind-nvim
-time([[Config for lspkind-nvim]], true)
-require("plugins/lspkind")
-time([[Config for lspkind-nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require("plugins/telescope")
-time([[Config for telescope.nvim]], false)
--- Config for: dart-vim-plugin
-time([[Config for dart-vim-plugin]], true)
-require("plugins/dart_vim_plugin")
-time([[Config for dart-vim-plugin]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require("plugins/luasnip")
+time([[Config for LuaSnip]], false)
+-- Config for: nvim-ts-autotag
+time([[Config for nvim-ts-autotag]], true)
+require("plugins/ts-autotag_nvim")
+time([[Config for nvim-ts-autotag]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require("plugins/lspconfig")
 time([[Config for nvim-lspconfig]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("plugins/treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: lsp-status.nvim
+time([[Config for lsp-status.nvim]], true)
+require("plugins/lspstatus")
+time([[Config for lsp-status.nvim]], false)
+-- Config for: lspkind-nvim
+time([[Config for lspkind-nvim]], true)
+require("plugins/lspkind")
+time([[Config for lspkind-nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require("plugins/autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require("plugins/telescope")
+time([[Config for telescope.nvim]], false)
+-- Config for: formatter.nvim
+time([[Config for formatter.nvim]], true)
+require("plugins/formatter")
+time([[Config for formatter.nvim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require("plugins/trouble_nvim")
+time([[Config for trouble.nvim]], false)
+-- Config for: feline.nvim
+time([[Config for feline.nvim]], true)
+require("plugins/feline_nvim")
+time([[Config for feline.nvim]], false)
+-- Config for: nvim-lsp-installer
+time([[Config for nvim-lsp-installer]], true)
+require("plugins/lsp_installer_nvim")
+time([[Config for nvim-lsp-installer]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require("plugins/gitsigns_nvim")
+time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-web-devicons
+time([[Config for nvim-web-devicons]], true)
+require("plugins/webdevicons_nvim")
+time([[Config for nvim-web-devicons]], false)
+-- Config for: nvim-bufferline.lua
+time([[Config for nvim-bufferline.lua]], true)
+require("plugins/bufferline_nvim")
+time([[Config for nvim-bufferline.lua]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require("plugins/tree_nvim")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require("plugins/cmp")
+time([[Config for nvim-cmp]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[au CmdUndefined :GlowInstall ++once lua require"packer.load"({'glow.nvim'}, {}, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
 if should_profile then save_profiles() end
 
 end)
