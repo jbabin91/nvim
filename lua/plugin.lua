@@ -10,6 +10,17 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute("packadd packer.nvim")
 end
 
+-- Packer commands
+vim.cmd [[command! PackerInstall packadd packer.nvim | lua require("plugins").install()]]
+vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require("plugins").update()]]
+vim.cmd [[command! PackerSync packadd packer.nvim | lua require("plugins").sync()]]
+vim.cmd [[command! PackerClean packadd packer.nvim | lua require("plugins").clean()]]
+vim.cmd [[command! PackerCompile packadd packer.nvim | lua require("plugins").compile()]]
+vim.cmd [[command! PackerStatus packadd packer.nvim | lua require("plugins").status()]]
+vim.cmd [[command! PC PackerCompile]]
+vim.cmd [[command! PS PackerStatus]]
+vim.cmd [[command! PU PackerSync]]
+
 require("packer").startup({
   function(use)
     -- Useful functionality
@@ -63,11 +74,7 @@ require("packer").startup({
     use({
       "goolord/alpha-nvim", -- A fast and highly customizable greeter like vim-startify/dashboard-nvim for Neovim
       requires = { "kyazdani42/nvim-web-devicons" },
-      config = function()
-        require("alpha").setup(
-          require("alpha.themes.dashboard").opts
-        )
-      end,
+      config = [[require("plugins/alpha_nvim")]]
     })
     -- Debuggin
     -- use({
@@ -256,11 +263,6 @@ require("packer").startup({
       "norcalli/nvim-colorizer.lua",
       config = [[require("plugins/colorizer")]],
     })
-    -- A vim plugin to display the indention levels with thin vertical lines
-    -- use({
-    --   "Yggdroot/indentLine",
-    --   config = [[require("plugins/indentLine")]],
-    -- })
     -- To change current working directory to project's root directory.
     -- use({
     --   "ygm2/rooter.nvim",
@@ -271,6 +273,7 @@ require("packer").startup({
       "lewis6991/gitsigns.nvim",
       requires = "nvim-lua/plenary.nvim",
       config = [[require("plugins/gitsigns_nvim")]],
+      event = "BufRead",
     })
     -- A pretty diagnostics, references, telescope results, quickfix, and location list to help you resolve all the trouble your code is causing.
     use({

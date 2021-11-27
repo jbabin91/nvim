@@ -76,7 +76,7 @@ _G.packer_plugins = {
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["alpha-nvim"] = {
-    config = { "\27LJ\2\n_\0\0\5\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\1K\0\1\0\topts\27alpha.themes.dashboard\nsetup\nalpha\frequire\0" },
+    config = { 'require("plugins/alpha_nvim")' },
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
@@ -150,8 +150,10 @@ _G.packer_plugins = {
   },
   ["gitsigns.nvim"] = {
     config = { 'require("plugins/gitsigns_nvim")' },
-    loaded = true,
-    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["glow.nvim"] = {
@@ -355,58 +357,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require("plugins/luasnip")
-time([[Config for LuaSnip]], false)
--- Config for: nvim-bufferline.lua
-time([[Config for nvim-bufferline.lua]], true)
-require("plugins/bufferline_nvim")
-time([[Config for nvim-bufferline.lua]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require("plugins/gitsigns_nvim")
-time([[Config for gitsigns.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require("plugins/cmp")
-time([[Config for nvim-cmp]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require("plugins/colorizer")
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: nvim-web-devicons
-time([[Config for nvim-web-devicons]], true)
-require("plugins/webdevicons_nvim")
-time([[Config for nvim-web-devicons]], false)
--- Config for: hop.nvim
-time([[Config for hop.nvim]], true)
-try_loadstring("\27LJ\2\nU\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\tkeys\28etovxqpdygfblzhckisuran\nsetup\bhop\frequire\0", "config", "hop.nvim")
-time([[Config for hop.nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require("plugins/telescope")
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-lsp-installer
-time([[Config for nvim-lsp-installer]], true)
-require("plugins/lsp_installer_nvim")
-time([[Config for nvim-lsp-installer]], false)
+-- Config for: lsp-status.nvim
+time([[Config for lsp-status.nvim]], true)
+require("plugins/lspstatus")
+time([[Config for lsp-status.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require("plugins/lspconfig")
 time([[Config for nvim-lspconfig]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-require("plugins/indentLine")
-time([[Config for indent-blankline.nvim]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 require("plugins/trouble_nvim")
 time([[Config for trouble.nvim]], false)
--- Config for: nvim-ts-autotag
-time([[Config for nvim-ts-autotag]], true)
-require("plugins/ts-autotag_nvim")
-time([[Config for nvim-ts-autotag]], false)
 -- Config for: lspkind-nvim
 time([[Config for lspkind-nvim]], true)
 require("plugins/lspkind")
@@ -415,32 +377,75 @@ time([[Config for lspkind-nvim]], false)
 time([[Config for nvim-autopairs]], true)
 require("plugins/autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: feline.nvim
-time([[Config for feline.nvim]], true)
-require("plugins/feline_nvim")
-time([[Config for feline.nvim]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
-try_loadstring("\27LJ\2\n_\0\0\5\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\1K\0\1\0\topts\27alpha.themes.dashboard\nsetup\nalpha\frequire\0", "config", "alpha-nvim")
+require("plugins/alpha_nvim")
 time([[Config for alpha-nvim]], false)
--- Config for: lsp-status.nvim
-time([[Config for lsp-status.nvim]], true)
-require("plugins/lspstatus")
-time([[Config for lsp-status.nvim]], false)
--- Config for: formatter.nvim
-time([[Config for formatter.nvim]], true)
-require("plugins/formatter")
-time([[Config for formatter.nvim]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 require("plugins/treesitter")
 time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-bufferline.lua
+time([[Config for nvim-bufferline.lua]], true)
+require("plugins/bufferline_nvim")
+time([[Config for nvim-bufferline.lua]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require("plugins/luasnip")
+time([[Config for LuaSnip]], false)
+-- Config for: nvim-ts-autotag
+time([[Config for nvim-ts-autotag]], true)
+require("plugins/ts-autotag_nvim")
+time([[Config for nvim-ts-autotag]], false)
+-- Config for: hop.nvim
+time([[Config for hop.nvim]], true)
+try_loadstring("\27LJ\2\nU\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\tkeys\28etovxqpdygfblzhckisuran\nsetup\bhop\frequire\0", "config", "hop.nvim")
+time([[Config for hop.nvim]], false)
+-- Config for: feline.nvim
+time([[Config for feline.nvim]], true)
+require("plugins/feline_nvim")
+time([[Config for feline.nvim]], false)
+-- Config for: formatter.nvim
+time([[Config for formatter.nvim]], true)
+require("plugins/formatter")
+time([[Config for formatter.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require("plugins/colorizer")
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: nvim-lsp-installer
+time([[Config for nvim-lsp-installer]], true)
+require("plugins/lsp_installer_nvim")
+time([[Config for nvim-lsp-installer]], false)
+-- Config for: nvim-web-devicons
+time([[Config for nvim-web-devicons]], true)
+require("plugins/webdevicons_nvim")
+time([[Config for nvim-web-devicons]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require("plugins/telescope")
+time([[Config for telescope.nvim]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+require("plugins/indentLine")
+time([[Config for indent-blankline.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require("plugins/cmp")
+time([[Config for nvim-cmp]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
 pcall(vim.cmd, [[au CmdUndefined :GlowInstall ++once lua require"packer.load"({'glow.nvim'}, {}, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
