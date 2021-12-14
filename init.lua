@@ -1,71 +1,39 @@
---[[
-  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
-Neovim init file
---]]
+--  __  __         _             _       _ _
+-- |  \/  |_   _  | |_   _  __ _(_)_ __ (_) |_
+-- | |\/| | | | | | | | | |/ _` | | '_ \| | __|
+-- | |  | | |_| | | | |_| | (_| | | | | | | |_
+-- |_|  |_|\__, | |_|\__,_|\__,_|_|_| |_|_|\__|
+--         |___/
 
------------------------------------------------------------
--- Import Lua modules
------------------------------------------------------------
--- load impatient first
-local present, _ = pcall(require, 'impatient')
-if present then require('impatient') end
+local fn = vim.fn
+local cmd = vim.cmd
+local nvim_cmd = vim.api.nvim_command
 
--- disable builtin plugins
-local disabled_builtins = {
-  "2html_plugin",
-  "getscript",
-  "getscriptPlugin",
-  "gzip",
-  "logipat",
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
-  "matchit",
-  "tar",
-  "tarPlugin",
-  "rrhelper",
-  "spellfile_plugin",
-  "vimball",
-  "vimballPlugin",
-  "zip",
-  "zipPlugin",
-}
-
-for _, plugin in pairs(disabled_builtins) do
-  vim.g["loaded_" .. plugin] = 1
+-- Auto install packer.nvim if it doesn't exists --
+---------------------------------------------------
+local function packer_init()
+  local install_path = fn.stdpath "data" .. "/site/pack/packer/opt/packer.nvim"
+  if fn.empty(fn.glob(install_path)) > 0 then
+    nvim_cmd("!git clone --depth=1 https://github.com/wbthomason/packer.nvim " .. install_path)
+  end
+  cmd [[packadd packer.nvim]]
+  cmd [[autocmd BufWritePost plugins.lua PackerCompile]] -- Auto compile when there are changes in plugins.lua
 end
 
--- load options, mappings, and plugins
-local modules = {
-  'options',
-  'mappings',
-  'packer_compiled',
-  'packerInit',
-  'pluginList',
-}
+-- Loading Modules --
+---------------------------------------------------
+packer_init()
 
-for i = 1, #modules, 1 do
-  pcall(require, modules[i])
+local present, _ = pcall(require, "impatient")
+if present then
+  require "impatient"
 end
 
-
--- require('packerInit')
--- require('pluginList')
-
--- require('settings')
--- require('keymaps')
--- require('plugins/packer')
--- require('plugins/nvim-tree')
--- require('plugins/indent-blankline')
--- require('plugins/feline')
--- require('plugins/vista')
--- require('plugins/nvim-cmp')
--- require('plugins/nvim-lspconfig')
--- require('plugins/nvim-treesitter')
--- require('plugins/alpha-nvim')
+-- Modules --
+require "plugins"
+require("settings").disable_builtins()
+require("settings").setup()
+require("config").setup()
+require("ide").setup()
+require("keymappings").setup()
+require("autocmd").setup()
