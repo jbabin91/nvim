@@ -3,11 +3,13 @@ local tools = {}
 function tools.setup()
   -- easymotion
   require("hop").setup()
+
   -- autopairs
   require("nvim-autopairs").setup {
     check_ts = true,
     disable_filetype = { "TelescopePrompt" },
   }
+
   -- Telescope
   require("telescope").setup {
     defaults = {
@@ -22,13 +24,16 @@ function tools.setup()
       },
     },
   }
-  require("telescope").load_extension "fzf"
   require("telescope").load_extension "file_browser"
+  require("telescope").load_extension "fzf"
   require("plenary.filetype").add_file "json"
+
   -- emmet
   vim.g.user_emmet_leader_key = "<C-z>"
+
   -- incsearch
   vim.g["incsearch#auto_nohlsearch"] = 1
+
   -- markdown preview
   vim.g.mkdp_auto_start = 1
   vim.g.mkdp_auto_close = 0
