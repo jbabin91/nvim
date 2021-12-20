@@ -196,6 +196,11 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
+  ["nvim-gps"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-gps",
+    url = "https://github.com/SmiteshP/nvim-gps"
+  },
   ["nvim-lsp-installer"] = {
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
