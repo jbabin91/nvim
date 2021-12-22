@@ -42,6 +42,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+cmd [[set shell=/bin/bash]]
 cmd [[set whichwrap+=<,>[,],h,l]]
 cmd [[set iskeyword+=-]]
 cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
