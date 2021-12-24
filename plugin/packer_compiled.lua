@@ -134,6 +134,11 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["gruvbox-material"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/gruvbox-material",
+    url = "https://github.com/sainnhe/gruvbox-material"
+  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/impatient.nvim",
@@ -144,10 +149,20 @@ _G.packer_plugins = {
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["kanagawa.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
+    url = "https://github.com/rebelot/kanagawa.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
   },
   ["nlsp-settings.nvim"] = {
     loaded = true,
@@ -228,6 +243,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/jacebabin/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-bbye"] = {
     loaded = true,

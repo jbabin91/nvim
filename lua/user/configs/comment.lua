@@ -19,4 +19,9 @@ comment.setup {
       location = location,
     }
   end,
+  mappings = {
+    basic = true,
+    extra = true,
+    extended = false,
+  },
 }
