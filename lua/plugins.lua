@@ -37,6 +37,12 @@ function M.setup()
 	  use "wbthomason/packer.nvim"
 		use "dstein64/vim-startuptime"
 
+    -- Load only when required
+    use {
+      "nvim-lua/plenary.nvim",
+      module = "plenary",
+    }
+
 		-- Colorscheme
 		use {
 			"rebelot/kanagawa.nvim",
@@ -61,6 +67,98 @@ function M.setup()
 			  require("config.neogit").setup()
 			end,
 		}
+
+    -- WhichKey
+    use {
+      "folke/which-key.nvim",
+      event = "VimEnter",
+      config = function()
+        require("config.whichkey").setup()
+      end,
+    }
+
+    -- IndentLine
+    use {
+      "lukas-reineke/indent-blankline.nvim",
+      event = "BufReadPre",
+      config = function()
+        require("config.indentblankline").setup()
+      end,
+    }
+
+    -- Better icons
+    use {
+      "kyazdani42/nvim-web-devicons",
+      module = "nvim-web-devicons",
+      config = function()
+        require("nvim-web-devicons").setup { default = true }
+      end,
+    }
+
+    -- Better Comment
+    use {
+      "numToStr/Comment.nvim",
+      keys = { "gc", "gcc", "gbc" },
+      config = function()
+        require("Comment").setup()
+      end,
+    }
+
+    -- Easy hopping
+    use {
+      "phaazon/hop.nvim",
+      cmd = { "HopWord", "HopChar1" },
+      config = function()
+        require("hop").setup()
+      end,
+      disable = true,
+    }
+
+    -- Easy motion
+    use {
+      "ggandor/lightspeed.nvim",
+      keys = { "s", "S", "f", "F", "t", "T" },
+      config = function()
+        require("lightspeed").setup()
+      end,
+    }
+
+    -- Markdown
+    use {
+      "iamcco/markdown-preview.nvim",
+      run = function()
+        vim.fn["mkdp#util#install"]()
+      end,
+      ft = "markdown",
+      cmd = { "MarkdownPreview" },
+    }
+
+    -- Statusline
+    use {
+      "nvim-lualine/lualine.nvim",
+      event = "VimEnter",
+      config = function()
+        require("config.lualine").setup()
+      end,
+      requires = { "nvim-web-devicons" },
+    }
+
+    -- Treesitter
+    use {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+      config = function()
+        require("config.treesitter").setup()
+      end,
+    }
+    use {
+      "SmiteshP/nvim-gps",
+      requires = "nvim-treesitter/nvim-treesitter",
+      module = "nvim-gps",
+      config = function()
+        require("nvim-gps").setup()
+      end,
+    }
 
 		if packer_bootstrap then
 		  print "Restart Neovim required after installation!"
