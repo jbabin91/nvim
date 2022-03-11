@@ -1,0 +1,7 @@
+require 'configs.indentlines'
+require 'configs.Comment'
+require 'configs.lualine'
+require 'configs.gitsigns'
+require 'configs.telescope'
+require 'configs.treesitter'
+require 'configs.cmp'
