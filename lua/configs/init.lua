@@ -1,0 +1,8 @@
+require "configs.alpha"
+require "configs.blankline"
+require "configs.cmp"
+require "configs.feline"
+require "configs.lsp"
+require "configs.nvim-tree"
+require "configs.treesitter"
+require "configs.vista"
