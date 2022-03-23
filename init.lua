@@ -1,11 +1,12 @@
-vim.g.miniature_color = "atelier-cave"
+-- vim.g.miniature_color = "atelier-cave"
+vim.g.miniature_color = "dracula"
 
 -- Options & Keymaps
 require("miniature.options")
 -- require("miniature.keymaps")
 
 -- Autocmd
--- require("miniature.autocmds")
+require("miniature.autocmds")
 
 -- Plugin setup
 require("miniature.plugins")
@@ -20,11 +21,11 @@ require("miniature.statusline")
 -- require("miniature.indentline")
 -- require("miniature.bufremove")
 -- require("miniature.trailspace")
--- require("miniature.comment")
+require("miniature.comment")
 -- require("miniature.cursorword")
 
 -- Other plugins
--- require("miniature.alpha")
+require("miniature.alpha")
 -- require("miniature.treesitter")
 -- require("miniature.gitsigns")
 -- require("miniature.cmp")
