@@ -1,26 +1,21 @@
-local cmd = vim.cmd
-
-cmd [[
+vim.cmd [[
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
-    autocmd TextYankPost * silent! lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
+    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
   augroup end
-
   augroup _git
     autocmd!
     autocmd FileType gitcommit setlocal wrap
     autocmd FileType gitcommit setlocal spell
   augroup end
-
   augroup _markdown
     autocmd!
     autocmd FileType markdown setlocal wrap
     autocmd FileType markdown setlocal spell
   augroup end
-
   augroup _auto_resize
     autocmd!
     autocmd VimResized * tabdo wincmd =
@@ -33,21 +28,18 @@ cmd [[
 --   autocmd BufWritePre * lua vim.lsp.buf.formatting()
 -- augroup end
 
--- local augroup = vim.api.nvim_create_augroup
--- local autocmd = vim.api.nvim_create_autocmd
-
 -- Nvim 0.7.0+
 vim.api.nvim_create_augroup("_nvim_tree", {clear = true})
 vim.api.nvim_create_autocmd("FileType", {
   desc = "nvim-tree mini.nvim setting",
   pattern = "NvimTree",
   group = "_nvim_tree",
-  callback = function()
+  callback = function ()
     vim.b.ministatusline_disable = true
     vim.b.miniindentscope_disable = true
     vim.b.minicursorword_disable = true
     vim.b.minitrailspace_disable = true
-  end,
+  end
 })
 
 vim.api.nvim_create_augroup("_symbols_outline", {clear = true})
@@ -55,24 +47,24 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "symbols-outline mini.nvim setting",
   pattern = "Outline",
   group = "_symbols_outline",
-  callback = function()
+  callback = function ()
     vim.b.ministatusline_disable = true
     vim.b.miniindentscope_disable = true
     vim.b.minicursorword_disable = true
     vim.b.minitrailspace_disable = true
-  end,
+  end
 })
 
 vim.api.nvim_create_augroup("_lsp_installer", {clear = true})
 vim.api.nvim_create_autocmd("FileType", {
   desc = "lsp-installer setting",
   pattern = "lsp-installer",
-  group = "_symbols_outline",
-  callback = function()
+  group = "_lsp_installer",
+  callback = function ()
     vim.b.miniindentscope_disable = true
     vim.b.minicursorword_disable = true
     vim.b.minitrailspace_disable = true
-  end,
+  end
 })
 
 vim.api.nvim_create_augroup("_alpha", {clear = true})
@@ -80,8 +72,8 @@ vim.api.nvim_create_autocmd("User", {
   desc = "alpha mini.nvim setting",
   pattern = "AlphaReady",
   group = "_alpha",
-  callback = function()
-    cmd [[set showtabline=0]]
+  callback = function ()
+    vim.cmd([[set showtabline=0]])
     vim.b.ministatusline_disable = true
     vim.b.miniindentscope_disable = true
     vim.b.minicursorword_disable = true
