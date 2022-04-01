@@ -1,5 +1,6 @@
 local M = {}
 local opts = {} -- empty options for maps with no extra options
+local g = vim.g
 
 -- {{{ Map function
 --[[
@@ -29,7 +30,7 @@ g.mapleader = " "
 g.maplocalleader = " "
 map("n", "<C-n>", ":set rnu!<cr>", opts) -- toggle relative line numbers
 map("", "<C-c>", ":CommentToggle<cr>", opts) -- toggle comment on current line or selection
-map("", "<C-t>", ":NvimTreeToggle<cr>", options) -- toggle nvimtree
+map("", "<C-t>", ":NvimTreeToggle<cr>", opts) -- toggle nvimtree
 map("n", "<leader>nf", ":Neoformat<cr>", { noremap = true }) -- format current buffer with neoformat
 map("n", "<leader>~", ":Dashboard<cr>", opts) -- map show dashboard
 
@@ -88,9 +89,9 @@ map("n", "<leader>k", ":wincmd k<CR>", opts)
 map("n", "<leader>l", ":wincmd l<CR>", opts)
 -- }}}
 -- {{{ terminal commands
-map("n", "<leader><CR>", ":vs | terminal<CR>i", opt)
-map("n", "<leader>\\", ":sp | terminal<CR>i", opt)
-map("t", "<C-esc>", "<C-\\><C-n>", opt)
+map("n", "<leader><CR>", ":vs | terminal<CR>i", opts)
+map("n", "<leader>\\", ":sp | terminal<CR>i", opts)
+map("t", "<C-esc>", "<C-\\><C-n>", opts)
 -- }}}
 -- {{{ telescope pullup
 map("n", "<leader>ff", ":Telescope find_files<CR>", { noremap = true })
@@ -110,8 +111,8 @@ map("n", "<leader>so", [[<cmd>lua require('telescope.builtin').tags{ only_curren
 map("n", "<leader>?", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]])
 -- }}}
 -- {{{ hop.nvim
-map("n", "<leader>aH", ":HopWord<CR>", opt)
-map("n", "<leader>ah", ":HopLine<CR>", opt)
+map("n", "<leader>aH", ":HopWord<CR>", opts)
+map("n", "<leader>ah", ":HopLine<CR>", opts)
 -- }}}
 -- Diagnostic keymaps
 map("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<cr>")

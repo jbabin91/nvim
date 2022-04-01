@@ -36,6 +36,10 @@ packer.init {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
     end,
+  },
+  profile = {
+    enable = true,
+    threshold = 1,
   }
 }
 
