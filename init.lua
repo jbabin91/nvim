@@ -3,5 +3,5 @@ if present then impatient.enable_profile() end
 
 require 'plugins'
 require 'core'
--- require 'plugins.configs'
+require 'plugins.configs'
 
