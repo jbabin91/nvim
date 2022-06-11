@@ -1,6 +1,0 @@
-require 'configs.cmp'
-require 'configs.lsp'
-require 'configs.lualine'
-require 'configs.telescope'
-require 'configs.treesitter'
-require 'configs.theme'
