@@ -50,11 +50,8 @@ opt.shortmess:append("c")
 opt.whichwrap:append("<>[]hl")
 opt.iskeyword:append("-")
 
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
 
 -- Theme
-
 g.tokyonight_style = "night"
 g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 local present, _ = pcall(require, "tokyonight")

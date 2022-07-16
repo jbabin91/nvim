@@ -217,10 +217,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: impatient.nvim
-time([[Config for impatient.nvim]], true)
-require("impatient")
-time([[Config for impatient.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require("nvim-autopairs").setup()
+time([[Config for nvim-autopairs]], false)
+-- Config for: alpha-nvim
+time([[Config for alpha-nvim]], true)
+require("configs/alpha")
+time([[Config for alpha-nvim]], false)
+-- Config for: vim-man
+time([[Config for vim-man]], true)
+nmap("<leader>m", "<Plug>(Vman)")
+time([[Config for vim-man]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 require("colorizer").setup()
@@ -241,34 +249,26 @@ time([[Config for chadtree]], false)
 time([[Config for lualine.nvim]], true)
 require("configs/lualine")
 time([[Config for lualine.nvim]], false)
--- Config for: vim-man
-time([[Config for vim-man]], true)
-nmap("<leader>m", "<Plug>(Vman)")
-time([[Config for vim-man]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-require("Comment").setup()
-time([[Config for Comment.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require("configs/treesitter")
-time([[Config for nvim-treesitter]], false)
 -- Config for: coq_nvim
 time([[Config for coq_nvim]], true)
 vim.g.coq_settings = { auto_start = "shut-up" }
 time([[Config for coq_nvim]], false)
+-- Config for: impatient.nvim
+time([[Config for impatient.nvim]], true)
+require("impatient")
+time([[Config for impatient.nvim]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require("configs/telescope")
 time([[Config for telescope.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require("nvim-autopairs").setup()
-time([[Config for nvim-autopairs]], false)
--- Config for: alpha-nvim
-time([[Config for alpha-nvim]], true)
-require("configs/alpha")
-time([[Config for alpha-nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("configs/treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+require("Comment").setup()
+time([[Config for Comment.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd null-ls.nvim ]]
