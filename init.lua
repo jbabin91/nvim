@@ -1,5 +1,2 @@
-require "settings"
-require "plugin"
-require "themes"
-require "configs"
-require "keymap"
+require("core")
+require("configs")

@@ -1,12 +1,20 @@
 local M = {}
 
-M.setup = function()
-  local icons = require "configs.icons"
+local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not status_cmp_ok then
+  return
+end
+
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+
+function M.setup()
   local signs = {
-    { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
-    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-    { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
 
   for _, sign in ipairs(signs) do
@@ -14,11 +22,9 @@ M.setup = function()
   end
 
   local config = {
-    -- disable virtual text
-    virtual_text = false,
-    -- show signs
+    virtual_text = false, -- disable virutal text
     signs = {
-      active = signs,
+      active = signs, -- show signs
     },
     update_in_insert = true,
     underline = true,
@@ -44,87 +50,42 @@ M.setup = function()
   })
 end
 
-local function lsp_highlight_document(client)
-  if client.resolved_capabilities.document_highlight then
-    local status_ok, illuminate = pcall(require, "illuminate")
-    if not status_ok then
-      return
-    end
-    illuminate.on_attach(client)
-  end
-end
-
 local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.dignostic.open_float()<cr>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<cr>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<cr>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<cr>", opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  local opts = { noremap = true, silent = true, buffer = bufnr }
+  local keymap = vim.keymap.set
+  keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+  keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+  keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+  keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+  keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+  keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+  keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", opts)
+  keymap("n", "<leader>li", "<cmd>LspInfo<cr>", opts)
+  keymap("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
+  keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({ buffer = 0 })<cr>", opts)
+  keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({ buffer = 0 })<cr>", opts)
+  keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  keymap("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+  keymap("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", opts)
 end
 
--- local notify_status_ok, notify = pcall(require, "notify")
--- if not notify_status_ok then
---   return
--- end
-
-M.on_attach = function(client, bufnr)
-  -- notify(client.name)
-  if client.name == "tsserver" or client.name == "html" then
-    client.resolved_capabilities.document_formatting = false
+function M.on_attach(client, bufnr)
+  if client.name == "tsserver" then
+    client.server_capabilities.documentFormattingProvider = false
   end
+
+  if client.name == "sumneko_lua" then
+    client.server_capabilities.documentFormattingProvider = false
+  end
+
   lsp_keymaps(bufnr)
-  lsp_highlight_document(client)
-end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-  return
-end
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-
-function M.enable_format_on_save()
-  vim.cmd [[
-    augroup format_on_save
-      autocmd!
-      autocmd BufWritePre * lua vim.lsp.buf.formatting()
-    augroup end
-  ]]
-  vim.notify "Enabled format on save"
-end
-
-function M.disable_format_on_save()
-  M.remove_augroup "format_on_save"
-  vim.notify "Disabled format on save"
-end
-
-function M.toggle_format_on_save()
-  if vim.fn.exists "#format_on_save#BufWritePre" == 0 then
-    M.enable_format_on_save()
-  else
-    M.disable_format_on_save()
+  local status_ok, illuminate = pcall(require, "illuminate")
+  if not status_ok then
+    return
   end
+  illuminate.on_attach(client)
 end
-
-function M.remove_augroup(name)
-  if vim.fn.exists("#" .. name) == 1 then
-    vim.cmd("au! " .. name)
-  end
-end
-
-vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("configs.lsp.handlers").toggle_format_on_save()' ]]
 
 return M

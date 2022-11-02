@@ -1,16 +1,18 @@
-require "configs.impatient"
-require "configs.cmp"
-require "configs.lsp"
-require "configs.autopairs"
-require "configs.bufferline"
-require "configs.bookmark"
-require "configs.colorizer"
-
-require "configs.blanklines"
-require "configs.comment"
-require "configs.copilot"
-require "configs.git-blame"
-require "configs.gitsigns"
-require "configs.lualine"
-require "configs.treesitter"
-require "configs.telescope"
+require("configs.colorscheme")
+require("configs.cmp")
+require("configs.telescope")
+require("configs.gitsigns")
+require("configs.treesitter")
+require("configs.autopairs")
+require("configs.comment")
+require("configs.nvim-tree")
+require("configs.bufferline")
+require("configs.lualine")
+require("configs.toggleterm")
+require("configs.project")
+require("configs.impatient")
+require("configs.illuminate")
+require("configs.indentline")
+require("configs.alpha")
+require("configs.lsp")
+require("configs.dap")

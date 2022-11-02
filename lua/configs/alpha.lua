@@ -3,9 +3,7 @@ if not status_ok then
   return
 end
 
-local icons = require "configs.icons"
-
-local dashboard = require "alpha.themes.dashboard"
+local dashboard = require("alpha.themes.dashboard")
 dashboard.section.header.val = {
   [[                               __                ]],
   [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
@@ -15,30 +13,23 @@ dashboard.section.header.val = {
   [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
 }
 dashboard.section.buttons.val = {
-  dashboard.button("f", icons.documents.Files .. " Find file", ":Telescope find_files <CR>"),
-  dashboard.button("e", icons.ui.NewFile .. " New file", ":ene <BAR> startinsert <CR>"),
-  dashboard.button(
-    "p",
-    icons.git.Repo .. " Find project",
-    ":lua require('telescope').extensions.projects.projects()<CR>"
-  ),
-  dashboard.button("r", icons.ui.History .. " Recent files", ":Telescope oldfiles <CR>"),
-  dashboard.button("t", icons.ui.List .. " Find text", ":Telescope live_grep <CR>"),
-  dashboard.button("s", icons.ui.SignIn .. " Find Session", ":Telescope sessions save_current=false"),
-  dashboard.button("c", icons.ui.Gear .. " Config", ":e ~/.config/nvim/init.lua <CR>"),
-  dashboard.button("q", icons.diagnostics.Error .. " Quit", ":qa<CR>"),
+  dashboard.button("f", " " .. " Find file", ":Telescope find_files<cr>"),
+  dashboard.button("e", " " .. " New File", ":ene <BAR> startinsert<cr>"),
+  dashboard.button("p", " " .. " Find project", ":lua require('telescope').extensions.projects.projects()<cr>"),
+  dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles<cr>"),
+  dashboard.button("t", " " .. " Find text", ":Telescope live_grep<cr>"),
+  dashboard.button("c", " " .. " Config", ":e ~/.config/nvim/init.lua<cr>"),
+  dashboard.button("q", " " .. " Quit", ":qa<cr>"),
 }
-
 local function footer()
-  return "neovim"
+  return "neovim basic ide"
 end
 
 dashboard.section.footer.val = footer()
 
 dashboard.section.footer.opts.hl = "Type"
-dashboard.section.buttons.opts.hl = "Include"
+dashboard.section.header.opts.hl = "Include"
 dashboard.section.buttons.opts.hl = "Keyword"
 
 dashboard.opts.opts.noautocmd = true
--- vim.cmd [[autocmd User AlphaReady echo 'ready']]
 alpha.setup(dashboard.opts)

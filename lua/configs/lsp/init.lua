@@ -3,7 +3,6 @@ if not status_ok then
   return
 end
 
-require "configs.lsp.lsp-signature"
-require "configs.lsp.lsp-installer"
+require("configs.lsp.mason")
 require("configs.lsp.handlers").setup()
-require "configs.lsp.null-ls"
+require("configs.lsp.null-ls")
