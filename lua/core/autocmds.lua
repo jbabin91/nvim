@@ -1,74 +1,124 @@
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd({ "FileType" }, {
-  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel" },
+local function augroup(name)
+  return vim.api.nvim_create_augroup("lazynvim_" .. name, { clear = true })
+end
+
+-- Check if we need to reload the file when it changed
+autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  group = augroup("checktime"),
   callback = function()
-    vim.cmd([[
-      nnoremap <silent> <buffer> q :close<cr>
-      set nobuflisted
-    ]])
+    if vim.o.buftype ~= "nofile" then
+      vim.cmd("checktime")
+    end
   end,
 })
 
-autocmd({ "FileType" }, {
-  pattern = { "gitcommit" },
+-- Highlight on yank
+autocmd("TextYankPost", {
+  group = augroup("highlight_yank"),
   callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
+    vim.highlight.on_yank()
   end,
 })
 
-autocmd({ "FileType" }, {
-  pattern = { "markdown" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
-
-vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
--- autocmd({ "BufEnter" }, {
---   pattern = "*",
---   callback = function()
---     vim.cmd([[
---       ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
---     ]])
---   end,
--- })
-
+-- resize splits if window got resized
 autocmd({ "VimResized" }, {
+  group = augroup("resize_splits"),
   callback = function()
-    vim.cmd("tabdo wincmd = ")
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd("tabdo wincmd =")
+    vim.cmd("tabnext " .. current_tab)
   end,
 })
 
-autocmd({ "CmdWinEnter" }, {
-  callback = function()
-    vim.cmd("quit")
+-- go to last loc when opening a buffer
+autocmd("BufReadPost", {
+  group = augroup("last_loc"),
+  callback = function(event)
+    local exclude = { "gitcommit" }
+    local buf = event.buf
+    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazynvim_last_loc then
+      return
+    end
+    vim.b[buf].lazynvim_last_loc = true
+    local mark = vim.api.nvim_buf_get_mark(buf, '"')
+    local lcount = vim.api.nvim_buf_line_count(buf)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
   end,
 })
 
-autocmd({ "BufWinEnter" }, {
-  callback = function()
-    vim.cmd("set formatoptions-=cro")
+-- close some filetypes with <q>
+autocmd("FileType", {
+  group = augroup("close_with_q"),
+  pattern = {
+    "PlenaryTestPopup",
+    "help",
+    "lspinfo",
+    "notify",
+    "qf",
+    "query",
+    "spectre_panel",
+    "startuptime",
+    "tsplayground",
+    "checkhealth",
+    "neotest-summary",
+    "neotest-output",
+    "neotest-output-panel",
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
 
-autocmd({ "TextYankPost" }, {
-  callback = function()
-    vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+-- make it easier to close man-files when opened inline
+autocmd("FileType", {
+  group = augroup("man_unlisted"),
+  pattern = { "man" },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
   end,
 })
 
-autocmd({ "BufWritePost" }, {
-  pattern = { "*.java" },
+-- wrap and check for spell in text filetypes
+autocmd("FileType", {
+  group = augroup("wrap_spell"),
+  pattern = { "gitcommit", "markdown" },
   callback = function()
-    vim.lsp.codelens.refresh()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
   end,
 })
 
-autocmd({ "VimEnter" }, {
+-- Fix conceallevel for json files
+autocmd({ "FileType" }, {
+  group = augroup("json_conceal"),
+  pattern = { "json", "jsonc", "json5" },
   callback = function()
-    vim.cmd("hi link illuminatedWord LspReferenceText")
+    vim.opt_local.conceallevel = 0
+  end,
+})
+
+-- Auto create dir when saving a file, in case some intermediate directory does not exist
+autocmd({ "BufWritePre" }, {
+  group = augroup("auto_create_dir"),
+  callback = function(event)
+    if event.match:match("^%w%w+://") then
+      return
+    end
+    local file = vim.loop.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+  end,
+})
+
+-- Prevent auto comment
+autocmd("FileType", {
+  group = augroup("comment"),
+  pattern = { "*" },
+  callback = function()
+    vim.cmd([[set formatoptions-=cro]])
   end,
 })
